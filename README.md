@@ -251,7 +251,31 @@ Base ETA 208 s  ->  Predicted ETA 417 s  (+100%)
   speeds. Implemented today.
 * **Mode B — native live traffic (`traffic.tar`):** write the same per-edge
   speeds into Valhalla's memory-mapped traffic extract so it uses them for both
-  routing *and* timing. Needs build-side access to your tiles (roadmap).
+  routing *and* timing. Implemented (`export/valhalla_traffic.py`); needs
+  build-side access to your tiles. One-time on the server:
+
+  ```bash
+  valhalla_build_extract -c valhalla.json --traffic --overwrite   # empty extract
+  ```
+
+  Then each update cycle (and `mjolnir.traffic_extract` set on a running service):
+
+  ```bash
+  freetraffic traffic-update --tar traffic.tar --csv edge_speeds.csv   # edge_id,speed_kph
+  # or, from a snapshot whose speeds are already edge-keyed:
+  freetraffic traffic-update --tar traffic.tar --snapshot matched.geojson
+  ```
+
+  ```python
+  from freetraffic import TrafficTarUpdater
+  with TrafficTarUpdater("traffic.tar") as tt:
+      tt.set_speeds({edge_id: speed_kph, ...})      # writes 8-byte TrafficSpeed records
+      tt.read_speed_kph(edge_id)                    # verify
+  ```
+
+  The `TrafficSpeed`/`TrafficTileHeader`/`GraphId` layouts match Valhalla source
+  and the writer round-trips in tests, but validate against your build the first
+  time (it preserves the header version and only rewrites speeds + `last_update`).
 
 Feeds whose speeds carry native segment ids (IBI511/WSDOT/TomTom) are mapped to
 Valhalla edge ids first with `routing.service.map_match_link_speeds`; GTFS-RT
@@ -278,17 +302,18 @@ probe speeds are already edge-keyed.
 
 Done: IBI511 platform (events+speeds), Open511, WZDx + registry discovery,
 WSDOT travel-times, GTFS-RT transit probes, NWS weather, TomTom freemium flow,
-and per-request traffic-aware routing on Valhalla. Next:
+the prediction spine (per-edge fusion → ETA), per-request traffic-aware routing
+(Mode A), the native `traffic.tar` writer (Mode B), and a record/replay test
+harness. Next:
 
-1. **More coverage** — finish the IBI511 state list; bespoke adapters for OHGO
+1. **End-to-end GTFS-RT loop** — a scheduler that polls a feed, tracks→matches→
+   aggregates, and writes `traffic.tar` continuously (wire the pieces into a service).
+2. **More coverage** — finish the IBI511 state list; bespoke adapters for OHGO
    (OH), NCDOT, Caltrans LCS/PeMS, MassDOT; CBP border-wait-times; city/county
    open-data portals (Socrata/ArcGIS); auto-ingest WZDx-registry feeds in `fetch`.
-2. **Live-speed → `traffic.tar`** — write Valhalla's binary live-traffic extract
-   from aggregated `LinkSpeed` (probes + travel-times) for true traffic-aware times.
-3. **Fusion policy** — combine measured speeds with event severity / lane
-   fractions / weather into principled per-edge penalties.
-4. **Scheduler / service** — periodic refresh loop + a long-running routing service.
-5. **Camera CV + NPMRDS** — traffic-camera vehicle detection; NPMRDS when access lands.
+3. **Validate Mode B against a live Valhalla** — confirm byte-format vs your build
+   and tune the breakpoint/congestion fields.
+4. **Camera CV + NPMRDS** — traffic-camera vehicle detection; NPMRDS when access lands.
 
 ---
 
@@ -317,7 +342,7 @@ then replay it deterministically in CI. See `freetraffic/testkit/__init__.py`.
 
 ```bash
 pip install -e '.[dev]'    # includes httpx + gtfs-realtime-bindings
-pytest -q          # 51 tests, fully offline (fixtures under tests/fixtures/)
+pytest -q          # 55 tests, fully offline (fixtures under tests/fixtures/)
 ```
 
 The Valhalla client is tested against a mocked transport, so no live server or

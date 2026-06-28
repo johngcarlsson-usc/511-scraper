@@ -74,6 +74,13 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_route.add_argument("--match-speeds", action="store_true",
                          help="map-match snapshot speeds to Valhalla edges before ETA")
 
+    # traffic-update (Mode B) -------------------------------------------------
+    p_tt = sub.add_parser("traffic-update",
+                          help="write edge speeds into a Valhalla traffic.tar (Mode B)")
+    p_tt.add_argument("--tar", required=True, help="path to an existing traffic.tar")
+    p_tt.add_argument("--csv", help="CSV of 'edge_id,speed_kph' rows")
+    p_tt.add_argument("--snapshot", help="GeoJSON snapshot; speeds must be edge-keyed")
+
     args = parser.parse_args(argv)
 
     if args.command == "sources":
@@ -87,6 +94,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         return _cmd_fetch(args)
     if args.command == "route":
         return _cmd_route(args)
+    if args.command == "traffic-update":
+        return _cmd_traffic_update(args)
     parser.print_help()
     return 1
 
@@ -231,6 +240,34 @@ def _cmd_route(args) -> int:
         ],
     }
     print(json.dumps(out, indent=2))
+    return 0
+
+
+def _cmd_traffic_update(args) -> int:
+    from .export.valhalla_traffic import TrafficTarUpdater
+
+    edge_speeds = {}
+    if args.csv:
+        with open(args.csv, "r", encoding="utf-8") as fh:
+            for line in fh:
+                parts = line.strip().split(",")
+                if len(parts) < 2:
+                    continue
+                try:
+                    edge_speeds[int(parts[0])] = float(parts[1])
+                except ValueError:
+                    continue  # header or bad row
+    snapshot = None
+    if args.snapshot:
+        with open(args.snapshot, "r", encoding="utf-8") as fh:
+            snapshot = TrafficSnapshot.from_geojson(json.load(fh))
+
+    with TrafficTarUpdater(args.tar) as up:
+        written = up.set_speeds(edge_speeds) if edge_speeds else 0
+        if snapshot:
+            written += up.apply_link_speeds(snapshot.speeds)
+        print(f"wrote {written} edge speed(s) into {args.tar} "
+              f"({up.tile_count} tiles); skipped {getattr(up, 'skipped', 0)}")
     return 0
 
 

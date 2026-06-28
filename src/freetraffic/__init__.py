@@ -50,6 +50,7 @@ from .probes import (
     VehicleSample,
     aggregate_by_edge,
 )
+from .export.valhalla_traffic import TrafficTarUpdater
 from .probes.tomtom import TomTomFlowClient
 from .predict import (
     EdgePrediction,
@@ -107,6 +108,8 @@ __all__ = [
     "ValhallaClient",
     "TrafficAwareRouter",
     "RouteResult",
+    # Mode B: native live traffic
+    "TrafficTarUpdater",
 ]
 
 
