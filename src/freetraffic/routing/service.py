@@ -20,7 +20,8 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Sequence, Tuple
 
 from ..geometry import BoundingBox, decode_polyline, haversine_m
-from ..models import EventType, TrafficEvent
+from ..models import EventType, LinkSpeed, TrafficEvent
+from ..predict import EtaPrediction, FusionConfig, predict_eta, route_edges_from_trace
 from ..store import TrafficSnapshot
 from .valhalla import LonLat, ValhallaClient
 
@@ -35,6 +36,7 @@ class RouteResult:
     events_on_route: List[TrafficEvent] = field(default_factory=list)
     exclusions_applied: int = 0
     summary: Optional[dict] = None
+    eta: Optional[EtaPrediction] = None  # fused, traffic-aware ETA (route_with_eta)
 
     @property
     def length_km(self) -> Optional[float]:
@@ -102,10 +104,77 @@ class TrafficAwareRouter:
             summary=summary,
         )
 
+    async def route_with_eta(
+        self,
+        origin: LonLat,
+        destination: LonLat,
+        snapshot: Optional[TrafficSnapshot] = None,
+        *,
+        costing: str = "auto",
+        config: Optional[FusionConfig] = None,
+        **route_kwargs: Any,
+    ) -> RouteResult:
+        """Route (avoiding closures), then re-time it with fused live speeds.
+
+        This is Mode A: works against any Valhalla server with no tile rebuild.
+        ``snapshot.speeds`` should already be map-matched to Valhalla edge ids
+        (``link_id`` = edge id); use :func:`map_match_link_speeds` first for feeds
+        whose speeds carry their own native ids.
+        """
+        result = await self.route(origin, destination, snapshot, costing=costing, **route_kwargs)
+        route_pts = decode_route_points(result.raw)
+        if len(route_pts) >= 2:
+            trace = await self.client.trace_attributes(
+                route_pts, costing=costing,
+                attributes=["edge.id", "edge.length", "edge.speed",
+                            "edge.begin_shape_index", "edge.end_shape_index"],
+            )
+            edges = route_edges_from_trace(trace)
+            result.eta = predict_eta(edges, snapshot or TrafficSnapshot(), config)
+        return result
+
 
 # --------------------------------------------------------------------------- #
 # Pure helpers (no network) -- independently testable.
 # --------------------------------------------------------------------------- #
+
+async def map_match_link_speeds(
+    speeds: Sequence[LinkSpeed],
+    client: ValhallaClient,
+    *,
+    costing: str = "auto",
+    concurrency: int = 8,
+) -> List[LinkSpeed]:
+    """Set each LinkSpeed's ``link_id`` to a Valhalla edge id via /trace_attributes.
+
+    For feeds whose speeds carry their own native segment ids (IBI511, WSDOT,
+    TomTom). Returns the speeds that matched at least one edge. GTFS-RT probe
+    speeds are already edge-keyed and don't need this.
+    """
+    import asyncio
+
+    sem = asyncio.Semaphore(concurrency)
+    matched: List[LinkSpeed] = []
+
+    async def _one(s: LinkSpeed) -> None:
+        if s.geometry is None:
+            return
+        pts = [(float(p[0]), float(p[1])) for p in s.geometry.iter_positions() if len(p) >= 2]
+        if len(pts) < 2:
+            return
+        async with sem:
+            try:
+                trace = await client.trace_attributes(pts, costing=costing, attributes=["edge.id"])
+            except Exception:  # noqa: BLE001
+                return
+        edges = trace.get("edges") or []
+        if edges and "id" in edges[0]:
+            s.link_id = str(int(edges[0]["id"]))
+            matched.append(s)
+
+    await asyncio.gather(*(_one(s) for s in speeds))
+    return matched
+
 
 def relevant_events(
     events: Sequence[TrafficEvent], bbox: Optional[BoundingBox]

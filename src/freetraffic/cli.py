@@ -203,13 +203,14 @@ def _cmd_route(args) -> int:
         return 1
     router = TrafficAwareRouter(client)
     result = asyncio.run(
-        router.route(origin, dest, snapshot, costing=args.costing,
-                     avoid_closures=not args.no_avoid)
+        router.route_with_eta(origin, dest, snapshot, costing=args.costing,
+                              avoid_closures=not args.no_avoid)
     )
     out = {
         "summary": result.summary,
         "length_km": result.length_km,
-        "time_s": result.time_s,
+        "valhalla_time_s": result.time_s,
+        "predicted_eta": result.eta.to_dict() if result.eta else None,
         "exclusions_applied": result.exclusions_applied,
         "events_on_route": [
             {

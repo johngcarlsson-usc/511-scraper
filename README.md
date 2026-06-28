@@ -212,6 +212,51 @@ osrm.write_segment_speed_file([(from_node, to_node, speed_kph)], "live.csv")  # 
 
 ---
 
+## Predicting travel times (the spine)
+
+Every source collapses to **one intermediate: a predicted speed per routing-graph
+edge.** Travel time is then `Σ length / speed` over the route's edges
+(`freetraffic.predict.fusion`). Sources combine by an explicit, tunable
+precedence (`FusionConfig`):
+
+| Precedence | Sources | Effect on the edge |
+|---|---|---|
+| 1. Hard constraint | full closures (511/Open511/WZDx) | edge impassable |
+| 2. Measured speed *(wins — already reflects incidents/weather)* | GTFS-RT probes, WSDOT travel-times, IBI511 speeds, TomTom flow | edge speed = measured (best by confidence × recency; stale dropped) |
+| 3. Modeled fallback *(only where unmeasured)* | incidents/lane closures (severity & lane-fraction), WZDx reduced limit, NWS weather | base speed × penalty, capped by posted limit |
+
+```python
+from freetraffic.predict import predict_eta, route_edges_from_trace
+edges = route_edges_from_trace(trace)          # Valhalla /trace_attributes -> edges
+eta = predict_eta(edges, snapshot)
+eta.base_time_s, eta.predicted_time_s, eta.delay_s   # free-flow vs traffic-aware
+for e in eta.edges:
+    e.edge_id, e.predicted_speed_kph, e.source, e.factors   # full provenance per edge
+```
+
+Example (3-edge route; buses crawling on edge 2, snow over edge 3):
+
+```
+edge 1: base 105 -> 105.0 kph  [base]
+edge 2: base  80 ->  22.0 kph  [measured:gtfs-rt]
+edge 3: base  50 ->  35.0 kph  [modeled] {weather: 0.7}
+Base ETA 208 s  ->  Predicted ETA 417 s  (+100%)
+```
+
+### Two ways to apply it to Valhalla
+
+* **Mode A — post-hoc ETA correction (any Valhalla, no rebuild):**
+  `TrafficAwareRouter.route_with_eta(...)` routes (avoiding closures), pulls the
+  chosen route's edges via `/trace_attributes`, and re-times them with fused
+  speeds. Implemented today.
+* **Mode B — native live traffic (`traffic.tar`):** write the same per-edge
+  speeds into Valhalla's memory-mapped traffic extract so it uses them for both
+  routing *and* timing. Needs build-side access to your tiles (roadmap).
+
+Feeds whose speeds carry native segment ids (IBI511/WSDOT/TomTom) are mapped to
+Valhalla edge ids first with `routing.service.map_match_link_speeds`; GTFS-RT
+probe speeds are already edge-keyed.
+
 ## How traffic gets into Valhalla (reference)
 
 * **Per-request avoidance (what `TrafficAwareRouter` does today):**
@@ -251,7 +296,7 @@ and per-request traffic-aware routing on Valhalla. Next:
 
 ```bash
 pip install -e '.[dev]'    # includes httpx + gtfs-realtime-bindings
-pytest -q          # 38 tests, fully offline (fixtures under tests/fixtures/)
+pytest -q          # 48 tests, fully offline (fixtures under tests/fixtures/)
 ```
 
 The Valhalla client is tested against a mocked transport, so no live server or

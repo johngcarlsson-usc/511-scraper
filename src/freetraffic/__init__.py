@@ -51,6 +51,15 @@ from .probes import (
     aggregate_by_edge,
 )
 from .probes.tomtom import TomTomFlowClient
+from .predict import (
+    EdgePrediction,
+    EtaPrediction,
+    FusionConfig,
+    RouteEdge,
+    predict_edges,
+    predict_eta,
+    route_edges_from_trace,
+)
 from .routing import RouteResult, TrafficAwareRouter, ValhallaClient
 from .store import TrafficSnapshot
 
@@ -86,6 +95,14 @@ __all__ = [
     "VehicleSample",
     "aggregate_by_edge",
     "TomTomFlowClient",
+    # prediction (the spine)
+    "predict_eta",
+    "predict_edges",
+    "EtaPrediction",
+    "EdgePrediction",
+    "RouteEdge",
+    "FusionConfig",
+    "route_edges_from_trace",
     # routing
     "ValhallaClient",
     "TrafficAwareRouter",
