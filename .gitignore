@@ -19,6 +19,11 @@ env/
 .coverage
 htmlcov/
 
+# Secrets / local config -- never commit credentials
+.env
+.env.*
+!.env.example
+
 # Local data / outputs
 *.local.json
 /data/

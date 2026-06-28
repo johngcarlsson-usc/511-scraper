@@ -36,7 +36,13 @@ from .models import (
     Severity,
     TrafficEvent,
 )
-from .parsers import parse_open511, parse_wzdx
+from .parsers import (
+    parse_ibi511_events,
+    parse_ibi511_speeds,
+    parse_open511,
+    parse_wzdx,
+)
+from .routing import RouteResult, TrafficAwareRouter, ValhallaClient
 from .store import TrafficSnapshot
 
 __version__ = "0.1.0"
@@ -60,7 +66,13 @@ __all__ = [
     # parsers / store
     "parse_open511",
     "parse_wzdx",
+    "parse_ibi511_events",
+    "parse_ibi511_speeds",
     "TrafficSnapshot",
+    # routing
+    "ValhallaClient",
+    "TrafficAwareRouter",
+    "RouteResult",
 ]
 
 

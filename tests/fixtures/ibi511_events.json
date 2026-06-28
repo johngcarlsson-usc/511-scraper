@@ -1,0 +1,35 @@
+[
+  {
+    "ID": "NY--1001",
+    "RegionName": "Capital Region",
+    "CountyName": "Albany",
+    "Severity": "Severe",
+    "RoadwayName": "I-90",
+    "DirectionOfTravel": "Eastbound",
+    "Description": "Crash blocking all lanes near Exit 5",
+    "Location": "near Exit 5",
+    "LanesAffected": "All Lanes",
+    "IsFullClosure": true,
+    "Latitude": 42.68,
+    "Longitude": -73.79,
+    "EventType": "accidentsAndIncidents",
+    "EventSubType": "crash",
+    "Reported": "/Date(1592352000000)/",
+    "LastUpdated": "/Date(1592355600000)/",
+    "StartDate": "/Date(1592352000000)/",
+    "PlannedEndDate": null
+  },
+  {
+    "ID": "NY--1002",
+    "Severity": "Moderate",
+    "RoadwayName": "I-87",
+    "DirectionOfTravel": "Northbound",
+    "Description": "Right lane closed for bridge work",
+    "LanesAffected": "1 of 3 lanes",
+    "IsFullClosure": false,
+    "Latitude": 42.9,
+    "Longitude": -73.8,
+    "EventType": "construction",
+    "LastUpdated": "/Date(1592355600000)/"
+  }
+]

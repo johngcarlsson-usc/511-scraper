@@ -18,3 +18,14 @@ def open511_payload() -> dict:
 @pytest.fixture
 def wzdx_payload() -> dict:
     return _load("wzdx_sample.json")
+
+
+@pytest.fixture
+def ibi511_events() -> list:
+    return _load("ibi511_events.json")
+
+
+@pytest.fixture
+def ibi511_speeds() -> list:
+    return _load("ibi511_speeds.json")
+

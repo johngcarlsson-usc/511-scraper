@@ -13,7 +13,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from .catalog import FeedSpec
 from .models import LinkSpeed, TrafficEvent
-from .parsers import EVENT_PARSERS
+from .parsers import EVENT_PARSERS, SPEED_PARSERS
 
 DEFAULT_TIMEOUT = 30.0
 DEFAULT_RETRIES = 3
@@ -102,34 +102,46 @@ async def _get_json(
     raise FetchError(feed.id, f"fetch failed after {DEFAULT_RETRIES} attempts: {last_exc}")
 
 
-def parse_pages(feed: FeedSpec, pages: List[dict]) -> List[TrafficEvent]:
-    """Parse already-fetched pages into canonical events."""
-    parser = EVENT_PARSERS.get(feed.kind)
-    if parser is None:
-        return []
+def parse_pages(
+    feed: FeedSpec, pages: List[dict]
+) -> Tuple[List[TrafficEvent], List[LinkSpeed]]:
+    """Parse already-fetched pages into canonical events and/or speeds."""
+    event_parser = EVENT_PARSERS.get(feed.kind)
+    speed_parser = SPEED_PARSERS.get(feed.kind)
     events: List[TrafficEvent] = []
+    speeds: List[LinkSpeed] = []
     for page in pages:
-        events.extend(parser(page, source_id=feed.id, jurisdiction=feed.jurisdiction))
-    return events
+        if event_parser is not None:
+            events.extend(
+                event_parser(page, source_id=feed.id, jurisdiction=feed.jurisdiction)
+            )
+        if speed_parser is not None:
+            speeds.extend(
+                speed_parser(page, source_id=feed.id, jurisdiction=feed.jurisdiction)
+            )
+    return events, speeds
 
 
-async def collect_feed(feed: FeedSpec, *, client: Any = None) -> List[TrafficEvent]:
-    """Fetch + parse a single event feed."""
+async def collect_feed(
+    feed: FeedSpec, *, client: Any = None
+) -> Tuple[List[TrafficEvent], List[LinkSpeed]]:
+    """Fetch + parse a single feed into (events, speeds)."""
     pages = await fetch_raw(feed, client=client)
     return parse_pages(feed, pages)
 
 
 async def collect_feeds(
     feeds: List[FeedSpec], *, concurrency: int = 8
-) -> Tuple[List[TrafficEvent], Dict[str, str]]:
+) -> Tuple[List[TrafficEvent], List[LinkSpeed], Dict[str, str]]:
     """Fetch + parse many feeds concurrently.
 
-    Returns ``(events, errors)`` where ``errors`` maps feed id -> message for
-    feeds that failed, so one broken jurisdiction never sinks the whole run.
+    Returns ``(events, speeds, errors)`` where ``errors`` maps feed id -> message
+    for feeds that failed, so one broken jurisdiction never sinks the whole run.
     """
     httpx = _require_httpx()
     sem = asyncio.Semaphore(concurrency)
     events: List[TrafficEvent] = []
+    speeds: List[LinkSpeed] = []
     errors: Dict[str, str] = {}
 
     async with httpx.AsyncClient(timeout=DEFAULT_TIMEOUT, follow_redirects=True) as client:
@@ -137,9 +149,11 @@ async def collect_feeds(
         async def _one(feed: FeedSpec) -> None:
             async with sem:
                 try:
-                    events.extend(await collect_feed(feed, client=client))
+                    ev, sp = await collect_feed(feed, client=client)
+                    events.extend(ev)
+                    speeds.extend(sp)
                 except Exception as exc:  # noqa: BLE001 - isolate per-feed failures
                     errors[feed.id] = str(exc)
 
         await asyncio.gather(*(_one(f) for f in feeds))
-    return events, errors
+    return events, speeds, errors

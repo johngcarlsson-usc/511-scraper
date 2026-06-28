@@ -60,6 +60,15 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_fetch.add_argument("-o", "--out", help="output GeoJSON file (default: stdout)")
     p_fetch.add_argument("--no-dedupe", action="store_true")
 
+    # route ---------------------------------------------------------------
+    p_route = sub.add_parser("route", help="traffic-aware route via Valhalla (network)")
+    p_route.add_argument("--from", dest="origin", required=True, metavar="LAT,LON")
+    p_route.add_argument("--to", dest="dest", required=True, metavar="LAT,LON")
+    p_route.add_argument("--costing", default="auto")
+    p_route.add_argument("--snapshot", help="GeoJSON snapshot to apply (from `fetch`/`parse`)")
+    p_route.add_argument("--no-avoid", action="store_true",
+                         help="don't build exclude_polygons from closures")
+
     args = parser.parse_args(argv)
 
     if args.command == "sources":
@@ -71,6 +80,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         return _cmd_parse(args)
     if args.command == "fetch":
         return _cmd_fetch(args)
+    if args.command == "route":
+        return _cmd_route(args)
     parser.print_help()
     return 1
 
@@ -135,27 +146,75 @@ def _cmd_fetch(args) -> int:
     from . import client, discovery
 
     cat = load_builtin_catalog()
-    feeds = cat.select(jurisdiction=args.state, kind=args.kind, events_only=True)
+    feeds = cat.select(jurisdiction=args.state, kind=args.kind)
     if args.discover:
         discovered = asyncio.run(discovery.discover_wzdx_feeds())
         for f in discovered:
             if (not args.state or (f.jurisdiction or "").upper() == args.state.upper()) and f.enabled:
                 feeds.append(f)
     if not feeds:
-        print("no event feeds match the filters", file=sys.stderr)
+        print("no feeds match the filters", file=sys.stderr)
         return 1
 
-    events, errors = asyncio.run(client.collect_feeds(feeds, concurrency=args.concurrency))
-    snap = TrafficSnapshot(events=events, errors=errors)
+    events, speeds, errors = asyncio.run(
+        client.collect_feeds(feeds, concurrency=args.concurrency)
+    )
+    snap = TrafficSnapshot(events=events, speeds=speeds, errors=errors)
     if not args.no_dedupe:
         snap.dedupe()
     _emit(snap, args.out)
     print(
-        f"fetched {len(snap.events)} event(s) from {len(feeds)} feed(s); "
-        f"{len(errors)} error(s)",
+        f"fetched {len(snap.events)} event(s) + {len(snap.speeds)} speed(s) "
+        f"from {len(feeds)} feed(s); {len(errors)} error(s)",
         file=sys.stderr,
     )
     return 0
+
+
+def _cmd_route(args) -> int:
+    import asyncio
+
+    from .routing import TrafficAwareRouter, ValhallaClient
+
+    origin = _parse_latlon(args.origin)
+    dest = _parse_latlon(args.dest)
+    snapshot = None
+    if args.snapshot:
+        with open(args.snapshot, "r", encoding="utf-8") as fh:
+            snapshot = TrafficSnapshot.from_geojson(json.load(fh))
+
+    client = ValhallaClient.from_env()
+    if not client.base_url:
+        print("set FT_VALHALLA_URL (and FT_VALHALLA_USER/PASS) in the environment",
+              file=sys.stderr)
+        return 1
+    router = TrafficAwareRouter(client)
+    result = asyncio.run(
+        router.route(origin, dest, snapshot, costing=args.costing,
+                     avoid_closures=not args.no_avoid)
+    )
+    out = {
+        "summary": result.summary,
+        "length_km": result.length_km,
+        "time_s": result.time_s,
+        "exclusions_applied": result.exclusions_applied,
+        "events_on_route": [
+            {
+                "id": e.id,
+                "type": e.event_type.value,
+                "severity": e.severity.value,
+                "headline": e.headline,
+            }
+            for e in result.events_on_route
+        ],
+    }
+    print(json.dumps(out, indent=2))
+    return 0
+
+
+def _parse_latlon(text: str):
+    lat_str, lon_str = text.split(",")
+    return (float(lon_str), float(lat_str))  # (lon, lat) internally
 
 
 def _emit(snap: TrafficSnapshot, out: Optional[str]) -> None:

@@ -1,11 +1,15 @@
 {
   "_comment": [
-    "Hand-verified seed catalog. The COMPREHENSIVE set of work-zone (WZDx) feeds",
+    "Hand-curated seed catalog. The COMPREHENSIVE set of work-zone (WZDx) feeds",
     "is discovered at runtime from the live USDOT WZDx Feed Registry via",
-    "`freetraffic sources discover-wzdx` -- this file only needs the feeds that",
-    "discovery can't find: Open511 event feeds and (eventually) live-speed feeds.",
-    "Adding an Open511 or WZDx jurisdiction here is a pure data change.",
-    "Set the relevant *_API_KEY environment variable for feeds that need a key."
+    "`freetraffic sources discover-wzdx`. This file carries what discovery can't",
+    "find: Open511 event feeds, the shared IBI511/Travel-IQ vendor-platform",
+    "feeds (one API shape across many states), and live-speed feeds.",
+    "Adding a jurisdiction that speaks open511/wzdx/ibi511 is a pure data change.",
+    "Feeds with an api_key_env need that environment variable set before they run.",
+    "IBI511 URLs on state-branded domains are verified where noted; a few use the",
+    "vendor `*.ibi511.com` host or are marked 'verify' -- failures are isolated",
+    "per-feed, so an unreachable entry never sinks a run."
   ],
   "feeds": [
     {
@@ -14,27 +18,120 @@
       "kind": "open511",
       "url": "https://api.511.org/traffic/events",
       "jurisdiction": "CA",
-      "country": "US",
       "api_key_env": "FT_SF511_API_KEY",
       "api_key_param": "api_key",
-      "api_key_in": "query",
       "params": { "format": "json" },
       "paginated": true,
       "enabled": true,
       "notes": "Reference Open511 deployment. Free token: https://511.org/open-data/token"
     },
+
+    {
+      "id": "ibi511-ny-events",
+      "name": "511NY - Events (incidents/closures/construction)",
+      "kind": "ibi511",
+      "url": "https://511ny.org/api/GetEvents",
+      "jurisdiction": "NY",
+      "api_key_env": "FT_IBI511_NY_KEY",
+      "api_key_param": "key",
+      "params": { "format": "json" },
+      "enabled": true,
+      "notes": "IBI511/Travel-IQ platform. Register: https://511ny.org/developers"
+    },
+    {
+      "id": "ibi511-ny-speeds",
+      "name": "511NY - Traffic Speeds",
+      "kind": "ibi511_speeds",
+      "url": "https://511ny.org/api/GetTrafficSpeeds",
+      "jurisdiction": "NY",
+      "api_key_env": "FT_IBI511_NY_KEY",
+      "api_key_param": "key",
+      "params": { "format": "json" },
+      "enabled": true,
+      "notes": "Live link speeds (the scarce signal). Same key as ibi511-ny-events."
+    },
+    {
+      "id": "ibi511-wi-events",
+      "name": "511WI - Events",
+      "kind": "ibi511",
+      "url": "https://511wi.gov/api/GetEvents",
+      "jurisdiction": "WI",
+      "api_key_env": "FT_IBI511_WI_KEY",
+      "api_key_param": "key",
+      "params": { "format": "json" },
+      "enabled": true,
+      "notes": "IBI511/Travel-IQ. Register: https://511wi.gov/developers"
+    },
+    {
+      "id": "ibi511-wi-speeds",
+      "name": "511WI - Traffic Speeds",
+      "kind": "ibi511_speeds",
+      "url": "https://511wi.gov/api/GetTrafficSpeeds",
+      "jurisdiction": "WI",
+      "api_key_env": "FT_IBI511_WI_KEY",
+      "api_key_param": "key",
+      "params": { "format": "json" },
+      "enabled": true
+    },
+    {
+      "id": "ibi511-ga-events",
+      "name": "511GA - Events",
+      "kind": "ibi511",
+      "url": "https://511ga.org/api/GetEvents",
+      "jurisdiction": "GA",
+      "api_key_env": "FT_IBI511_GA_KEY",
+      "api_key_param": "key",
+      "params": { "format": "json" },
+      "enabled": true,
+      "notes": "IBI511/Travel-IQ (ga.ibi511.com). Register: https://511ga.org/developers"
+    },
+    {
+      "id": "ibi511-ut-events",
+      "name": "UDOT Traffic (Utah) - Events",
+      "kind": "ibi511",
+      "url": "https://www.udottraffic.utah.gov/api/GetEvents",
+      "jurisdiction": "UT",
+      "api_key_env": "FT_IBI511_UT_KEY",
+      "api_key_param": "key",
+      "params": { "format": "json" },
+      "enabled": true,
+      "notes": "IBI511/Travel-IQ (prod-ut.ibi511.com). Verify base URL on register."
+    },
+    {
+      "id": "ibi511-fl-events",
+      "name": "FL511 (Florida) - Events",
+      "kind": "ibi511",
+      "url": "https://fl511.com/api/GetEvents",
+      "jurisdiction": "FL",
+      "api_key_env": "FT_IBI511_FL_KEY",
+      "api_key_param": "key",
+      "params": { "format": "json" },
+      "enabled": true,
+      "notes": "IBI511/Travel-IQ. Verify base URL when registering at fl511.com."
+    },
+    {
+      "id": "ibi511-newengland-events",
+      "name": "New England 511 (NH/ME/VT tri-state) - Events",
+      "kind": "ibi511",
+      "url": "https://newengland511.org/api/GetEvents",
+      "jurisdiction": "NH",
+      "api_key_env": "FT_IBI511_NHMEVT_KEY",
+      "api_key_param": "key",
+      "params": { "format": "json" },
+      "enabled": true,
+      "notes": "Tri-state IBI511/Travel-IQ deployment (NH, ME, VT). Verify base URL."
+    },
+
     {
       "id": "wsdot-traveler-speeds",
       "name": "WSDOT Traveler Information - Traffic Flow (sensor speeds)",
       "kind": "speed",
       "url": "https://www.wsdot.wa.gov/Traffic/api/TrafficFlow/TrafficFlowREST.svc/GetTrafficFlowsAsJson",
       "jurisdiction": "WA",
-      "country": "US",
       "api_key_env": "FT_WSDOT_API_KEY",
       "api_key_param": "AccessCode",
-      "api_key_in": "query",
       "enabled": false,
-      "notes": "Live-speed feed. Needs a dedicated parser (roadmap): returns FlowReadingValue per station, not link speeds. Free key: https://wsdot.wa.gov/traffic/api/"
+      "notes": "Live-speed feed. Needs a dedicated parser (roadmap): FlowReadingValue per station. Free key: https://wsdot.wa.gov/traffic/api/"
     },
     {
       "id": "caltrans-pems-speeds",
@@ -42,7 +139,6 @@
       "kind": "speed",
       "url": "https://pems.dot.ca.gov/",
       "jurisdiction": "CA",
-      "country": "US",
       "enabled": false,
       "notes": "Loop-detector speeds/flow. Requires account + custom export parser (roadmap). One of the few true free live-speed sources in the US."
     }

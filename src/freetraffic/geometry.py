@@ -83,6 +83,39 @@ def haversine_m(a: Tuple[float, float], b: Tuple[float, float]) -> float:
     return 2 * r * math.asin(min(1.0, math.sqrt(h)))
 
 
+def decode_polyline(encoded: str, precision: int = 5) -> List[List[float]]:
+    """Decode a Google/Valhalla encoded polyline to ``[[lon, lat], ...]``.
+
+    ``precision=5`` is the Google default (most 511 vendor feeds); Valhalla uses
+    ``precision=6``. Returns lon/lat order to match GeoJSON.
+    """
+    if not encoded:
+        return []
+    factor = float(10 ** precision)
+    coords: List[List[float]] = []
+    index = lat = lon = 0
+    length = len(encoded)
+    while index < length:
+        for _ in range(2):
+            shift = result = 0
+            while True:
+                if index >= length:
+                    return coords
+                b = ord(encoded[index]) - 63
+                index += 1
+                result |= (b & 0x1F) << shift
+                shift += 5
+                if b < 0x20:
+                    break
+            delta = ~(result >> 1) if (result & 1) else (result >> 1)
+            if _ == 0:
+                lat += delta
+            else:
+                lon += delta
+        coords.append([lon / factor, lat / factor])
+    return coords
+
+
 @dataclass(frozen=True)
 class BoundingBox:
     """Geographic bounding box in degrees."""
@@ -108,3 +141,18 @@ class BoundingBox:
 
     def as_tuple(self) -> Tuple[float, float, float, float]:
         return (self.min_lon, self.min_lat, self.max_lon, self.max_lat)
+
+    @classmethod
+    def from_points(
+        cls, points: Iterable[Tuple[float, float]], pad_deg: float = 0.0
+    ) -> Optional["BoundingBox"]:
+        xs: List[float] = []
+        ys: List[float] = []
+        for lon, lat in points:
+            xs.append(float(lon))
+            ys.append(float(lat))
+        if not xs:
+            return None
+        return cls(
+            min(xs) - pad_deg, min(ys) - pad_deg, max(xs) + pad_deg, max(ys) + pad_deg
+        )

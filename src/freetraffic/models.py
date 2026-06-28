@@ -42,6 +42,16 @@ def parse_datetime(value: Any) -> Optional[datetime]:
     text = str(value).strip()
     if not text:
         return None
+    # ASP.NET / Microsoft JSON dates: "/Date(1592352000000)/" or with an offset
+    # "/Date(1592352000000-0400)/". Common in state 511 vendor feeds.
+    if text.startswith("/Date(") or text.startswith("Date("):
+        import re
+
+        m = re.search(r"(-?\d+)", text)
+        if m:
+            ms = int(m.group(1))
+            return datetime.fromtimestamp(ms / 1000.0, tz=timezone.utc)
+        return None
     # Normalize a trailing Z to an explicit UTC offset for fromisoformat.
     candidate = text.replace("Z", "+00:00")
     try:

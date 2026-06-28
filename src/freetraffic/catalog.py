@@ -21,8 +21,10 @@ from importlib import resources
 from typing import Any, Dict, List, Optional
 
 # How a feed's data is shaped / what it yields.
-EVENT_KINDS = {"open511", "wzdx"}
-SPEED_KINDS = {"speed"}  # sensor / probe link-speed feeds (per-source parsers)
+EVENT_KINDS = {"open511", "wzdx", "ibi511"}
+# sensor / probe / vendor link-speed feeds. "speed" is a placeholder for feeds
+# that still need a bespoke parser (roadmap).
+SPEED_KINDS = {"speed", "ibi511_speeds"}
 
 
 @dataclass

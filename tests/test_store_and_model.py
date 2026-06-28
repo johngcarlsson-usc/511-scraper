@@ -48,3 +48,16 @@ def test_parse_datetime_variants():
     assert parse_datetime("2026-06-28").year == 2026
     assert parse_datetime(None) is None
     assert parse_datetime(1_750_000_000).year >= 2025  # epoch seconds
+    # ASP.NET / Microsoft JSON date used by state 511 vendor feeds
+    dt = parse_datetime("/Date(1592355600000)/")
+    assert dt is not None and dt.year == 2020 and dt.tzinfo is not None
+
+
+def test_snapshot_geojson_from_geojson_roundtrip(open511_payload):
+    events = parse_open511(open511_payload, source_id="src", jurisdiction="CA")
+    gj = TrafficSnapshot(events=events).to_geojson()
+    restored = TrafficSnapshot.from_geojson(gj)
+    assert len(restored.events) == 2
+    closed = next(e for e in restored.events if e.impact.closed)
+    assert closed.geometry is not None
+    assert closed.event_type.value in {"incident", "closure", "construction", "unknown"}

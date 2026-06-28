@@ -1,0 +1,25 @@
+[
+  {
+    "ID": "SPD-1",
+    "RoadwayName": "I-90",
+    "DirectionOfTravel": "Eastbound",
+    "Speed": 25,
+    "FreeFlowSpeed": 65,
+    "Latitude": 42.68,
+    "Longitude": -73.79,
+    "LastUpdated": "/Date(1592355600000)/"
+  },
+  {
+    "ID": "SPD-2",
+    "RoadwayName": "I-87",
+    "Speed": 60,
+    "Latitude": 42.9,
+    "Longitude": -73.8
+  },
+  {
+    "ID": "SPD-NODATA",
+    "RoadwayName": "US-9",
+    "Latitude": 42.5,
+    "Longitude": -73.7
+  }
+]

@@ -12,7 +12,17 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from typing import Dict, Iterable, List, Optional
 
-from .models import LinkSpeed, TrafficEvent
+from .geometry import Geometry
+from .models import (
+    EventStatus,
+    EventType,
+    Impact,
+    LinkSpeed,
+    RoadInfo,
+    Severity,
+    TrafficEvent,
+    parse_datetime,
+)
 
 
 @dataclass
@@ -60,6 +70,67 @@ class TrafficSnapshot:
 
     def dumps(self, *, indent: Optional[int] = None, include_raw: bool = False) -> str:
         return json.dumps(self.to_geojson(include_raw=include_raw), indent=indent)
+
+    @classmethod
+    def from_geojson(cls, obj: dict) -> "TrafficSnapshot":
+        """Reconstruct a snapshot from GeoJSON this package emitted.
+
+        Round-trips the routing-relevant fields (geometry, type, impact,
+        timing); ``raw`` and exotic fields are not restored.
+        """
+        snap = cls()
+        for feat in obj.get("features", []):
+            props = feat.get("properties") or {}
+            geom = Geometry.from_geojson(feat.get("geometry"))
+            if "speed_kph" in props:
+                snap.speeds.append(
+                    LinkSpeed(
+                        source_id=props.get("source_id", "?"),
+                        speed_kph=float(props["speed_kph"]),
+                        freeflow_kph=props.get("freeflow_kph"),
+                        link_id=props.get("link_id"),
+                        jurisdiction=props.get("jurisdiction"),
+                        roadway=props.get("roadway"),
+                        direction=props.get("direction"),
+                        observed_at=parse_datetime(props.get("observed_at")),
+                        geometry=geom,
+                    )
+                )
+                continue
+            impact_d = props.get("impact") or {}
+            snap.events.append(
+                TrafficEvent(
+                    id=props.get("id", ""),
+                    source_id=props.get("source_id", "?"),
+                    jurisdiction=props.get("jurisdiction"),
+                    event_type=_enum(EventType, props.get("event_type"), EventType.UNKNOWN),
+                    subtypes=props.get("subtypes", []),
+                    severity=_enum(Severity, props.get("severity"), Severity.UNKNOWN),
+                    status=_enum(EventStatus, props.get("status"), EventStatus.ACTIVE),
+                    headline=props.get("headline"),
+                    description=props.get("description"),
+                    impact=Impact(
+                        closed=bool(impact_d.get("closed", False)),
+                        lanes_closed=impact_d.get("lanes_closed"),
+                        lanes_total=impact_d.get("lanes_total"),
+                        reduced_speed_kph=impact_d.get("reduced_speed_kph"),
+                    ),
+                    geometry=geom,
+                    created=parse_datetime(props.get("created")),
+                    updated=parse_datetime(props.get("updated")),
+                    starts=parse_datetime(props.get("starts")),
+                    ends=parse_datetime(props.get("ends")),
+                    url=props.get("url"),
+                )
+            )
+        return snap
+
+
+def _enum(enum_cls, value, default):
+    try:
+        return enum_cls(value)
+    except (ValueError, TypeError):
+        return default
 
 
 def _event_key(ev: TrafficEvent) -> object:
