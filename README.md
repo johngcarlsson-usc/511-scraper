@@ -292,11 +292,32 @@ and per-request traffic-aware routing on Valhalla. Next:
 
 ---
 
+## Testing & validating live
+
+Three layers, two runnable offline today:
+
+1. **Unit / fusion** — every source→speed rule and the ETA math (`tests/test_predict.py`).
+2. **End-to-end over replay** — the *real* client + `/trace_attributes` + fusion
+   path, driven by a recorded cassette with no network (`tests/test_cassette.py`).
+3. **Live** — against your Valhalla + real feeds (needs open network):
+
+```bash
+cp .env.example .env     # FT_VALHALLA_URL/USER/PASS, FT_VALHALLA_NGROK=1, one feed key
+freetraffic fetch --state NY -o ny.geojson
+freetraffic route --from 40.71,-74.01 --to 42.65,-73.75 --snapshot ny.geojson --match-speeds
+# -> base vs predicted ETA, exclusions applied, events on route
+```
+
+**Turn one live run into a permanent test** with the record/replay harness
+(`freetraffic.testkit`): wrap your httpx transport with `RecordingTransport` to
+capture a real Valhalla+feed session to a cassette (credentials are stripped),
+then replay it deterministically in CI. See `freetraffic/testkit/__init__.py`.
+
 ## Development
 
 ```bash
 pip install -e '.[dev]'    # includes httpx + gtfs-realtime-bindings
-pytest -q          # 48 tests, fully offline (fixtures under tests/fixtures/)
+pytest -q          # 51 tests, fully offline (fixtures under tests/fixtures/)
 ```
 
 The Valhalla client is tested against a mocked transport, so no live server or
