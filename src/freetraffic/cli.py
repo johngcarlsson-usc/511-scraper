@@ -71,6 +71,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_route.add_argument("--snapshot", help="GeoJSON snapshot to apply (from `fetch`/`parse`)")
     p_route.add_argument("--no-avoid", action="store_true",
                          help="don't build exclude_polygons from closures")
+    p_route.add_argument("--match-speeds", action="store_true",
+                         help="map-match snapshot speeds to Valhalla edges before ETA")
 
     args = parser.parse_args(argv)
 
@@ -201,6 +203,12 @@ def _cmd_route(args) -> int:
         print("set FT_VALHALLA_URL (and FT_VALHALLA_USER/PASS) in the environment",
               file=sys.stderr)
         return 1
+    if args.match_speeds and snapshot and snapshot.speeds:
+        from .routing.service import map_match_link_speeds
+
+        snapshot.speeds = asyncio.run(map_match_link_speeds(snapshot.speeds, client))
+        print(f"map-matched {len(snapshot.speeds)} speed(s) to edges", file=sys.stderr)
+
     router = TrafficAwareRouter(client)
     result = asyncio.run(
         router.route_with_eta(origin, dest, snapshot, costing=args.costing,
