@@ -13,7 +13,9 @@ from typing import Callable, Dict, List
 
 from ..models import LinkSpeed, TrafficEvent
 from .ibi511 import parse_ibi511_events, parse_ibi511_speeds
+from .nws import parse_nws_alerts
 from .open511 import parse_open511
+from .wsdot import parse_wsdot_travel_times
 from .wzdx import parse_wzdx
 
 # kind -> event parser. Generic parsers cover any standards-compliant or shared
@@ -22,11 +24,13 @@ EVENT_PARSERS: Dict[str, Callable[..., List[TrafficEvent]]] = {
     "open511": parse_open511,
     "wzdx": parse_wzdx,
     "ibi511": parse_ibi511_events,
+    "nws_alerts": parse_nws_alerts,
 }
 
 # kind -> speed parser (the scarcer live-speed signal).
 SPEED_PARSERS: Dict[str, Callable[..., List[LinkSpeed]]] = {
     "ibi511_speeds": parse_ibi511_speeds,
+    "wsdot_traveltimes": parse_wsdot_travel_times,
 }
 
 __all__ = [
@@ -36,4 +40,6 @@ __all__ = [
     "parse_wzdx",
     "parse_ibi511_events",
     "parse_ibi511_speeds",
+    "parse_nws_alerts",
+    "parse_wsdot_travel_times",
 ]

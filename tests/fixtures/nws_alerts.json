@@ -1,0 +1,35 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": "urn:oid:1",
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-122, 47], [-122, 48], [-121, 48], [-121, 47], [-122, 47]]]
+      },
+      "properties": {
+        "id": "a1",
+        "event": "Winter Storm Warning",
+        "severity": "Severe",
+        "headline": "Winter Storm Warning until 6 AM",
+        "description": "Heavy snow expected. Travel could be very difficult.",
+        "onset": "2026-01-01T00:00:00Z",
+        "expires": "2026-01-02T00:00:00Z",
+        "sent": "2025-12-31T18:00:00Z",
+        "areaDesc": "King County, WA"
+      }
+    },
+    {
+      "id": "urn:oid:2",
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "a2",
+        "event": "Air Quality Alert",
+        "severity": "Minor",
+        "headline": "Air Quality Alert"
+      }
+    }
+  ]
+}

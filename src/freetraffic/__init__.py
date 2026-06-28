@@ -39,9 +39,18 @@ from .models import (
 from .parsers import (
     parse_ibi511_events,
     parse_ibi511_speeds,
+    parse_nws_alerts,
     parse_open511,
+    parse_wsdot_travel_times,
     parse_wzdx,
 )
+from .probes import (
+    GtfsRtProbeTracker,
+    ProbeSpeed,
+    VehicleSample,
+    aggregate_by_edge,
+)
+from .probes.tomtom import TomTomFlowClient
 from .routing import RouteResult, TrafficAwareRouter, ValhallaClient
 from .store import TrafficSnapshot
 
@@ -68,7 +77,15 @@ __all__ = [
     "parse_wzdx",
     "parse_ibi511_events",
     "parse_ibi511_speeds",
+    "parse_nws_alerts",
+    "parse_wsdot_travel_times",
     "TrafficSnapshot",
+    # probes (measured live speeds)
+    "GtfsRtProbeTracker",
+    "ProbeSpeed",
+    "VehicleSample",
+    "aggregate_by_edge",
+    "TomTomFlowClient",
     # routing
     "ValhallaClient",
     "TrafficAwareRouter",

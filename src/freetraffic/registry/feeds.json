@@ -123,15 +123,35 @@
     },
 
     {
-      "id": "wsdot-traveler-speeds",
-      "name": "WSDOT Traveler Information - Traffic Flow (sensor speeds)",
+      "id": "nws-alerts",
+      "name": "National Weather Service - Active Alerts (driving-relevant)",
+      "kind": "nws_alerts",
+      "url": "https://api.weather.gov/alerts/active",
+      "jurisdiction": null,
+      "enabled": true,
+      "notes": "Free, national, ungated weather alerts (winter/ice/fog/flood/wind/storm) -> WEATHER_CONDITION events. Filter by area with params, e.g. {\"area\": \"WA\"}."
+    },
+    {
+      "id": "wsdot-travel-times",
+      "name": "WSDOT - Travel Times (measured current vs typical)",
+      "kind": "wsdot_traveltimes",
+      "url": "https://www.wsdot.wa.gov/Traffic/api/TravelTimes/TravelTimesREST.svc/GetTravelTimesAsJson",
+      "jurisdiction": "WA",
+      "api_key_env": "FT_WSDOT_API_KEY",
+      "api_key_param": "AccessCode",
+      "enabled": true,
+      "notes": "Direct measured travel times -> LinkSpeed (current speed + freeflow baseline). Free key: https://wsdot.wa.gov/traffic/api/ . Template for other DOT travel-time feeds."
+    },
+    {
+      "id": "wsdot-traffic-flow",
+      "name": "WSDOT - Traffic Flow (categorical sensor congestion)",
       "kind": "speed",
       "url": "https://www.wsdot.wa.gov/Traffic/api/TrafficFlow/TrafficFlowREST.svc/GetTrafficFlowsAsJson",
       "jurisdiction": "WA",
       "api_key_env": "FT_WSDOT_API_KEY",
       "api_key_param": "AccessCode",
       "enabled": false,
-      "notes": "Live-speed feed. Needs a dedicated parser (roadmap): FlowReadingValue per station. Free key: https://wsdot.wa.gov/traffic/api/"
+      "notes": "FlowReadingValue is a 0-4 congestion category, not a speed; needs a bespoke parser (roadmap). Prefer wsdot-travel-times for actual speeds."
     },
     {
       "id": "caltrans-pems-speeds",

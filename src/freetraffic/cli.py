@@ -19,7 +19,7 @@ import sys
 from typing import List, Optional
 
 from .catalog import FeedSpec, load_builtin_catalog
-from .parsers import EVENT_PARSERS
+from .parsers import EVENT_PARSERS, SPEED_PARSERS
 from .store import TrafficSnapshot
 
 
@@ -44,7 +44,10 @@ def main(argv: Optional[List[str]] = None) -> int:
     # parse ---------------------------------------------------------------
     p_parse = sub.add_parser("parse", help="parse a local raw feed file (offline)")
     p_parse.add_argument("file", help="raw feed JSON file")
-    p_parse.add_argument("--kind", required=True, choices=sorted(EVENT_PARSERS))
+    p_parse.add_argument(
+        "--kind", required=True,
+        choices=sorted(set(EVENT_PARSERS) | set(SPEED_PARSERS)),
+    )
     p_parse.add_argument("--source-id", default="local")
     p_parse.add_argument("--state", default=None)
     p_parse.add_argument("-o", "--out", help="output GeoJSON file (default: stdout)")
@@ -132,13 +135,23 @@ def _cmd_discover(args) -> int:
 def _cmd_parse(args) -> int:
     with open(args.file, "r", encoding="utf-8") as fh:
         payload = json.load(fh)
-    parser_fn = EVENT_PARSERS[args.kind]
-    events = parser_fn(payload, source_id=args.source_id, jurisdiction=args.state)
-    snap = TrafficSnapshot(events=events)
+    if args.kind in EVENT_PARSERS:
+        events = EVENT_PARSERS[args.kind](
+            payload, source_id=args.source_id, jurisdiction=args.state
+        )
+        snap = TrafficSnapshot(events=events)
+    else:
+        speeds = SPEED_PARSERS[args.kind](
+            payload, source_id=args.source_id, jurisdiction=args.state
+        )
+        snap = TrafficSnapshot(speeds=speeds)
     if not args.no_dedupe:
         snap.dedupe()
     _emit(snap, args.out)
-    print(f"parsed {len(snap.events)} event(s)", file=sys.stderr)
+    print(
+        f"parsed {len(snap.events)} event(s) + {len(snap.speeds)} speed(s)",
+        file=sys.stderr,
+    )
     return 0
 
 

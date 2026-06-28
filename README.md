@@ -5,11 +5,18 @@ origin→destination routing traffic-aware — on your own Valhalla server.**
 
 You run [Valhalla](https://github.com/valhalla/valhalla). What it lacks out of
 the box is *live conditions*. `freetraffic` scrapes every freely available
-public traffic source it can — state **511** systems (the shared Arcadis/IBI
-"Travel-IQ" platform), **Open511** event feeds, **WZDx** work-zone feeds, and
-(on the roadmap) live-speed sensor/probe feeds — normalizes them into one
-canonical model, and feeds them into Valhalla so routes avoid closures and
-surface the incidents along the way.
+public traffic source it can and normalizes them into one canonical model, then
+feeds them into Valhalla so routes avoid closures and reflect real conditions.
+
+**Sources implemented today:**
+
+- **State 511 events + speeds** — the shared Arcadis/IBI "Travel-IQ" platform
+  (`GetEvents` / `GetTrafficSpeeds`), one adapter across many states.
+- **Open511** event feeds and **WZDx** work-zone feeds (with live USDOT-registry discovery).
+- **DOT travel-time feeds** (WSDOT `GetTravelTimes`) → measured speeds.
+- **GTFS-Realtime transit vehicles as floating speed probes** — free, national.
+- **National Weather Service** alerts → driving-relevant weather events.
+- **TomTom Traffic Flow** (freemium, live-lookup only) for on-demand enrichment.
 
 > OSRM has been retired in favour of Valhalla; the routing layer targets
 > Valhalla. An OSRM `segment-speed-file` exporter is still included for anyone
@@ -52,14 +59,15 @@ format" you had in mind. Each portal just needs its own free developer key.
 ## Architecture
 
 ```
-        ┌──────────────────── sources ────────────────────┐
-  IBI511 platform (GetEvents/GetTrafficSpeeds)   Open511   WZDx   speed feeds
-  NY·WI·GA·UT·FL·NH/ME/VT·...                    SF Bay   (registry)  (roadmap)
-        │                       │                 │         │          │
-        ▼                       ▼                 ▼         ▼          ▼
-   parsers/ibi511      parsers/ibi511      parsers/open511 parsers/wzdx  (bespoke)
-   (events)            (speeds)
-        └───────────────────────┼──────────────────────────┘
+        ┌────────────────────────── sources ──────────────────────────┐
+  IBI511 platform   Open511   WZDx      WSDOT       GTFS-RT      NWS      TomTom
+  events + speeds   SF Bay   (registry) traveltimes transit      alerts   flow
+  NY·WI·GA·UT·...            discovery  (speeds)    probes       weather  (freemium)
+        │             │        │          │           │            │         │
+        ▼             ▼        ▼          ▼           ▼            ▼         ▼
+   parsers/ibi511  open511   wzdx     parsers/wsdot  probes/    parsers/  probes/
+   (events+speeds)                              gtfs_rt   nws      tomtom
+        └─────────────────────────────┼──────────────────────────────────┘
                                  ▼
                     canonical model  (models.py)
                 TrafficEvent  +  LinkSpeed   (km/h, tz-aware)
@@ -154,6 +162,42 @@ asyncio.run(main())
 the corridor into Valhalla `exclude_polygons`, then annotates the returned route
 with the events lying along it.
 
+### Library — live speeds from transit probes (GTFS-Realtime)
+
+Transit buses are free, live floating probes. Poll an agency's GTFS-RT
+`VehiclePositions` feed repeatedly; the tracker diffs each vehicle's movement
+into segment speeds, which you map-match to Valhalla edges and aggregate:
+
+```python
+from freetraffic.probes import GtfsRtProbeTracker, aggregate_by_edge
+from freetraffic.probes.gtfs_rt import fetch_vehicle_positions, map_match_probes
+from freetraffic.routing import ValhallaClient
+
+tracker = GtfsRtProbeTracker()           # keep this across polls (it's stateful)
+valhalla = ValhallaClient.from_env()
+
+# each polling cycle (e.g. every 20-30s):
+samples = await fetch_vehicle_positions("https://agency.example/gtfs-rt/vehicles")
+probes = tracker.update(samples)                      # vehicle movement -> speeds
+matched = await map_match_probes(probes, valhalla)    # attach Valhalla edge ids
+link_speeds = aggregate_by_edge(matched, source_id="gtfs-rt", min_samples=2)
+# -> LinkSpeed per edge; feed export/valhalla.py or your traffic.tar updater
+```
+
+Needs the `[gtfs]` extra (`pip install 'freetraffic[gtfs]'`). Dwell-at-stop,
+GPS-jump and stale samples are filtered; the speed-derivation logic is pure and
+unit-tested.
+
+### Library — freemium enrichment (TomTom), ToS-respecting
+
+```python
+from freetraffic.probes.tomtom import TomTomFlowClient  # set FT_TOMTOM_API_KEY
+flow = await TomTomFlowClient().flow_segment(lon=-122.33, lat=47.6)  # LinkSpeed
+```
+
+Live-lookup only — TomTom's terms forbid caching/redistribution, so use the
+result for the current request and discard it (don't crawl the network with it).
+
 ### Feeding live *speeds* into the engine (deeper integration)
 
 Valhalla keys traffic by its own edge ids, so a `LinkSpeed`/closure geometry
@@ -187,25 +231,27 @@ osrm.write_segment_speed_file([(from_node, to_node, speed_kph)], "live.csv")  # 
 
 ## Roadmap
 
-Priority is **breadth of sources**, then deeper Valhalla integration:
+Done: IBI511 platform (events+speeds), Open511, WZDx + registry discovery,
+WSDOT travel-times, GTFS-RT transit probes, NWS weather, TomTom freemium flow,
+and per-request traffic-aware routing on Valhalla. Next:
 
-1. **More platform coverage** — finish the IBI511 state list, add bespoke
-   adapters for big non-platform DOTs (WSDOT, OHGO, NCDOT, Caltrans LCS/PeMS,
-   MassDOT), and wire WZDx-registry feeds into `fetch` automatically.
-2. **Live-speed → `traffic.tar`** — map-match `LinkSpeed` records to edge ids and
-   write Valhalla's binary live-traffic extract for true traffic-aware times.
-3. **Fusion policy** — translate event severity / lane fractions / reduced speed
-   limits into principled edge-speed penalties when no measured speed exists.
-4. **Scheduler / service** — periodic refresh + a long-running routing service.
-5. **NPMRDS ingest** — when access lands (historical/predicted, not live).
+1. **More coverage** — finish the IBI511 state list; bespoke adapters for OHGO
+   (OH), NCDOT, Caltrans LCS/PeMS, MassDOT; CBP border-wait-times; city/county
+   open-data portals (Socrata/ArcGIS); auto-ingest WZDx-registry feeds in `fetch`.
+2. **Live-speed → `traffic.tar`** — write Valhalla's binary live-traffic extract
+   from aggregated `LinkSpeed` (probes + travel-times) for true traffic-aware times.
+3. **Fusion policy** — combine measured speeds with event severity / lane
+   fractions / weather into principled per-edge penalties.
+4. **Scheduler / service** — periodic refresh loop + a long-running routing service.
+5. **Camera CV + NPMRDS** — traffic-camera vehicle detection; NPMRDS when access lands.
 
 ---
 
 ## Development
 
 ```bash
-pip install -e '.[dev]'
-pytest -q          # 31 tests, fully offline (fixtures under tests/fixtures/)
+pip install -e '.[dev]'    # includes httpx + gtfs-realtime-bindings
+pytest -q          # 38 tests, fully offline (fixtures under tests/fixtures/)
 ```
 
 The Valhalla client is tested against a mocked transport, so no live server or

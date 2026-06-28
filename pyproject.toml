@@ -24,7 +24,9 @@ dependencies = []
 
 [project.optional-dependencies]
 fetch = ["httpx>=0.24"]
-dev = ["pytest>=7", "httpx>=0.24"]
+# GTFS-Realtime probe parsing (protobuf bindings).
+gtfs = ["gtfs-realtime-bindings>=1.0"]
+dev = ["pytest>=7", "httpx>=0.24", "gtfs-realtime-bindings>=1.0"]
 
 [project.scripts]
 freetraffic = "freetraffic.cli:main"

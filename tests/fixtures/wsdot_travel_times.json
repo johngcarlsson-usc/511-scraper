@@ -1,0 +1,27 @@
+[
+  {
+    "TravelTimeID": 2,
+    "Name": "SB I-5 Seattle to Tacoma",
+    "Description": "Southbound I-5",
+    "TimeUpdated": "/Date(1592355600000)/",
+    "Distance": 10.0,
+    "AverageTime": 10,
+    "CurrentTime": 20,
+    "StartPoint": {
+      "RoadName": "I-5",
+      "Direction": "S",
+      "Latitude": 47.6,
+      "Longitude": -122.3,
+      "MilePost": 165.0
+    },
+    "EndPoint": { "Latitude": 47.5, "Longitude": -122.33, "MilePost": 155.0 }
+  },
+  {
+    "TravelTimeID": 3,
+    "Name": "Bad row (no distance/time)",
+    "Distance": 0,
+    "CurrentTime": 0,
+    "StartPoint": {},
+    "EndPoint": {}
+  }
+]
