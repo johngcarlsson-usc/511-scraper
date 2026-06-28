@@ -1,0 +1,49 @@
+{
+  "type": "FeatureCollection",
+  "road_event_feed_info": { "version": "4.2", "publisher": "ExampleDOT" },
+  "features": [
+    {
+      "id": "wz-100",
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[-93.62, 41.6], [-93.61, 41.61]]
+      },
+      "properties": {
+        "core_details": {
+          "event_type": "work-zone",
+          "data_source_id": "ds1",
+          "road_names": ["I-235"],
+          "direction": "eastbound",
+          "name": "I-235 EB resurfacing",
+          "description": "Right lane closed for resurfacing.",
+          "update_date": "2026-06-28T04:00:00Z",
+          "creation_date": "2026-06-01T00:00:00Z"
+        },
+        "start_date": "2026-06-02T13:00:00Z",
+        "end_date": "2026-08-01T23:00:00Z",
+        "vehicle_impact": "some-lanes-closed",
+        "event_status": "active",
+        "reduced_speed_limit_kph": 72,
+        "lanes": [
+          { "order": 1, "type": "general", "status": "open" },
+          { "order": 2, "type": "general", "status": "closed" }
+        ]
+      }
+    },
+    {
+      "id": "wz-101",
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-93.7, 41.5] },
+      "properties": {
+        "core_details": {
+          "event_type": "work-zone",
+          "road_names": "US-69",
+          "update_date": "2026-06-28T03:00:00Z"
+        },
+        "vehicle_impact": "all-lanes-closed",
+        "event_status": "active"
+      }
+    }
+  ]
+}

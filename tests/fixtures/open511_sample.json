@@ -1,0 +1,35 @@
+{
+  "events": [
+    {
+      "url": "https://api.example.org/events/EVT-1",
+      "id": "EVT-1",
+      "status": "ACTIVE",
+      "headline": "Lane closure on I-80 West",
+      "description": "Two of three lanes closed for paving.",
+      "event_type": "CONSTRUCTION",
+      "event_subtypes": ["road-construction"],
+      "severity": "MODERATE",
+      "created": "2026-06-20T08:00:00-07:00",
+      "updated": "2026-06-28T06:30:00Z",
+      "geography": { "type": "Point", "coordinates": [-122.27, 37.81] },
+      "roads": [
+        { "name": "I-80", "direction": "W", "lanes": 3, "lanes_open": 1 }
+      ],
+      "schedule": { "intervals": ["2026-06-20T15:00/2026-07-15T23:00"] }
+    },
+    {
+      "id": "EVT-2",
+      "status": "ACTIVE",
+      "headline": "Full closure SR-1",
+      "event_type": "INCIDENT",
+      "severity": "MAJOR",
+      "updated": "2026-06-28T05:00:00Z",
+      "geography": {
+        "type": "LineString",
+        "coordinates": [[-122.5, 37.7], [-122.49, 37.71]]
+      },
+      "roads": [{ "name": "SR-1", "lanes": 2, "lanes_closed": 2 }]
+    }
+  ],
+  "pagination": { "offset": 0, "next_url": null }
+}

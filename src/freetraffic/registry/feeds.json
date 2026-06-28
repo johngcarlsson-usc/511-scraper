@@ -1,0 +1,50 @@
+{
+  "_comment": [
+    "Hand-verified seed catalog. The COMPREHENSIVE set of work-zone (WZDx) feeds",
+    "is discovered at runtime from the live USDOT WZDx Feed Registry via",
+    "`freetraffic sources discover-wzdx` -- this file only needs the feeds that",
+    "discovery can't find: Open511 event feeds and (eventually) live-speed feeds.",
+    "Adding an Open511 or WZDx jurisdiction here is a pure data change.",
+    "Set the relevant *_API_KEY environment variable for feeds that need a key."
+  ],
+  "feeds": [
+    {
+      "id": "sf-bay-open511",
+      "name": "511 SF Bay (MTC) - Open511 Traffic Events",
+      "kind": "open511",
+      "url": "https://api.511.org/traffic/events",
+      "jurisdiction": "CA",
+      "country": "US",
+      "api_key_env": "FT_SF511_API_KEY",
+      "api_key_param": "api_key",
+      "api_key_in": "query",
+      "params": { "format": "json" },
+      "paginated": true,
+      "enabled": true,
+      "notes": "Reference Open511 deployment. Free token: https://511.org/open-data/token"
+    },
+    {
+      "id": "wsdot-traveler-speeds",
+      "name": "WSDOT Traveler Information - Traffic Flow (sensor speeds)",
+      "kind": "speed",
+      "url": "https://www.wsdot.wa.gov/Traffic/api/TrafficFlow/TrafficFlowREST.svc/GetTrafficFlowsAsJson",
+      "jurisdiction": "WA",
+      "country": "US",
+      "api_key_env": "FT_WSDOT_API_KEY",
+      "api_key_param": "AccessCode",
+      "api_key_in": "query",
+      "enabled": false,
+      "notes": "Live-speed feed. Needs a dedicated parser (roadmap): returns FlowReadingValue per station, not link speeds. Free key: https://wsdot.wa.gov/traffic/api/"
+    },
+    {
+      "id": "caltrans-pems-speeds",
+      "name": "Caltrans PeMS - Detector Station Speeds",
+      "kind": "speed",
+      "url": "https://pems.dot.ca.gov/",
+      "jurisdiction": "CA",
+      "country": "US",
+      "enabled": false,
+      "notes": "Loop-detector speeds/flow. Requires account + custom export parser (roadmap). One of the few true free live-speed sources in the US."
+    }
+  ]
+}

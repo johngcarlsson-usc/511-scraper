@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "freetraffic"
+version = "0.1.0"
+description = "A definitive, comprehensive layer that scrapes free traffic data sources (state 511 / Open511 / WZDx and live-speed feeds) and normalizes them for traffic-aware routing on Valhalla and OSRM."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "511-scraper contributors" }]
+keywords = ["traffic", "routing", "valhalla", "osrm", "511", "open511", "wzdx", "navigation"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: GIS",
+    "Intended Audience :: Developers",
+]
+
+# The core library (models, parsers, exporters) is pure standard library so it
+# installs and runs anywhere. Network fetching needs httpx; install with the
+# [fetch] extra.
+dependencies = []
+
+[project.optional-dependencies]
+fetch = ["httpx>=0.24"]
+dev = ["pytest>=7", "httpx>=0.24"]
+
+[project.scripts]
+freetraffic = "freetraffic.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+freetraffic = ["registry/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
