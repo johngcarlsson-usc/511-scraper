@@ -62,15 +62,16 @@ async def fetch_raw(feed: FeedSpec, *, client: Any = None) -> List[dict]:
         client = httpx.AsyncClient(timeout=DEFAULT_TIMEOUT, follow_redirects=True)
     try:
         url, params, headers = _build_request(feed)
-        pages: List[dict] = []
+        is_json = getattr(feed, "response_format", "json") == "json"
+        pages: List[Any] = []
         next_url: Optional[str] = url
         next_params: Optional[Dict[str, str]] = params
         seen = 0
         while next_url:
-            payload = await _get_json(client, feed, next_url, next_params, headers)
+            payload = await _get_payload(client, feed, next_url, next_params, headers, is_json)
             pages.append(payload)
             seen += 1
-            if not feed.paginated or seen >= 50:
+            if not is_json or not feed.paginated or seen >= 50:
                 break
             pagination = payload.get("pagination") if isinstance(payload, dict) else None
             next_url = pagination.get("next_url") if isinstance(pagination, dict) else None
@@ -81,20 +82,22 @@ async def fetch_raw(feed: FeedSpec, *, client: Any = None) -> List[dict]:
             await client.aclose()
 
 
-async def _get_json(
+async def _get_payload(
     client: Any,
     feed: FeedSpec,
     url: str,
     params: Optional[Dict[str, str]],
     headers: Dict[str, str],
-) -> dict:
+    is_json: bool = True,
+) -> Any:
+    """Fetch one page. Returns a dict for JSON feeds, or raw text for xml/text."""
     httpx = _require_httpx()
     last_exc: Optional[Exception] = None
     for attempt in range(DEFAULT_RETRIES):
         try:
             resp = await client.get(url, params=params, headers=headers)
             resp.raise_for_status()
-            return resp.json()
+            return resp.json() if is_json else resp.text
         except (httpx.HTTPError, ValueError) as exc:  # ValueError: bad JSON
             last_exc = exc
             if attempt < DEFAULT_RETRIES - 1:

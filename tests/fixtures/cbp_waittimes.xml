@@ -1,0 +1,26 @@
+<border_wait_time>
+  <port>
+    <port_number>250401</port_number>
+    <border>Mexican Border</border>
+    <port_name>San Ysidro</port_name>
+    <crossing_name>San Ysidro</crossing_name>
+    <passenger_vehicle_lanes>
+      <standard_lanes>
+        <operational_status>open</operational_status>
+        <update_time>2026-06-27T10:00:00Z</update_time>
+        <delay_minutes>45</delay_minutes>
+        <lanes_open>10</lanes_open>
+      </standard_lanes>
+    </passenger_vehicle_lanes>
+    <commercial_vehicle_lanes>
+      <standard_lanes><delay_minutes>20</delay_minutes></standard_lanes>
+    </commercial_vehicle_lanes>
+  </port>
+  <port>
+    <port_number>250000</port_number>
+    <port_name>Otay Mesa</port_name>
+    <passenger_vehicle_lanes>
+      <standard_lanes><delay_minutes>15</delay_minutes></standard_lanes>
+    </passenger_vehicle_lanes>
+  </port>
+</border_wait_time>

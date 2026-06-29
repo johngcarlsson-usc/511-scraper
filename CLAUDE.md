@@ -101,11 +101,14 @@ Env vars (see `.env.example`): `FT_VALHALLA_URL/USER/PASS/NGROK`,
    fetch VehiclePositions → `GtfsRtProbeTracker.update` → `map_match_probes`
    (Valhalla) → `aggregate_by_edge` → `TrafficTarUpdater.set_speeds`, on a timer,
    for one or more agencies. This is what makes it a *running service*.
-2. **Broaden sources** (data-first): finish the IBI511 state list (add each
-   state's portal to `registry/feeds.json`); add bespoke adapters for OHGO (OH),
-   NCDOT (drivenc), Caltrans LCS/PeMS, MassDOT; CBP border wait times
-   (`https://bwt.cbp.gov/api/waittimes`, XML); city/county open-data portals
-   (Socrata/ArcGIS REST). Auto-ingest the WZDx registry into `fetch --discover`.
+2. **Broaden sources** (data-first). DONE so far: CBP border wait (XML),
+   OHGO, NCDOT, generic ArcGIS + Socrata adapters (parsers + offline tests); a
+   `response_format` field + text/XML path in `client.py`; `fetch --discover`
+   already auto-ingests the WZDx registry. STILL TODO (need live validation on
+   the open-network host): verify/enable the candidate IBI511 states and the
+   NCDOT/OHGO/ArcGIS/Socrata example feeds in `registry/feeds.json`; add Caltrans
+   LCS (XML schema unconfirmed) + PeMS speeds and MassDOT; point the
+   `arcgis-example`/`socrata-example` templates at real city/county layers.
 3. **Validate Mode B against the live Valhalla** — confirm the `traffic.tar`
    byte format vs the running build; tune breakpoint/congestion fields; add a
    before/after route ETA check.

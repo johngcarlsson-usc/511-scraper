@@ -1,0 +1,4 @@
+{"results":[
+  {"id":"c1","category":"construction","description":"Lane closed on I-70 EB","roadStatus":"open","latitude":39.96,"longitude":-83.0,"routeName":"I-70","direction":"EB","location":"near Exit 100","lastUpdated":"2026-06-27T09:00:00Z"},
+  {"id":"i2","category":"incident","description":"Crash blocking road","roadStatus":"Closed","latitude":41.5,"longitude":-81.7,"routeName":"I-90"}
+]}

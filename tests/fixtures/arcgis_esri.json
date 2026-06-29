@@ -1,0 +1,7 @@
+{
+  "spatialReference":{"wkid":102100,"latestWkid":3857},
+  "features":[
+    {"attributes":{"OBJECTID":10,"EVENT_TYPE":"Construction","ROAD":"Main St","DIRECTION":"NB","DESCRIPTION":"Roadwork ahead","LAST_UPDATED":"2026-06-27T08:00:00Z"},
+     "geometry":{"x":-13627361.0,"y":4549153.0}}
+  ]
+}

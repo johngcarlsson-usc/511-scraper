@@ -196,7 +196,11 @@ def _cmd_discover(args) -> int:
 
 def _cmd_parse(args) -> int:
     with open(args.file, "r", encoding="utf-8") as fh:
-        payload = json.load(fh)
+        raw = fh.read()
+    try:
+        payload = json.loads(raw)   # JSON feeds
+    except ValueError:
+        payload = raw               # XML/text feeds (e.g. CBP) -> parser gets the string
     if args.kind in EVENT_PARSERS:
         events = EVENT_PARSERS[args.kind](
             payload, source_id=args.source_id, jurisdiction=args.state

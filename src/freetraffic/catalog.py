@@ -21,7 +21,8 @@ from importlib import resources
 from typing import Any, Dict, List, Optional
 
 # How a feed's data is shaped / what it yields.
-EVENT_KINDS = {"open511", "wzdx", "ibi511", "nws_alerts"}
+EVENT_KINDS = {"open511", "wzdx", "ibi511", "nws_alerts",
+               "cbp", "ohgo", "ncdot", "arcgis", "socrata"}
 # sensor / probe / vendor link-speed feeds. "speed" is a placeholder for feeds
 # that still need a bespoke parser (roadmap).
 SPEED_KINDS = {"speed", "ibi511_speeds", "wsdot_traveltimes"}
@@ -46,6 +47,8 @@ class FeedSpec:
     params: Dict[str, str] = field(default_factory=dict)
     # Whether the feed pages (Open511 ``pagination.next_url``).
     paginated: bool = False
+    # Response body type: "json" (default) or "xml"/"text" (parser gets the raw string).
+    response_format: str = "json"
     enabled: bool = True
     notes: Optional[str] = None
 

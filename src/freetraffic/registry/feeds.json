@@ -121,6 +121,30 @@
       "enabled": true,
       "notes": "Tri-state IBI511/Travel-IQ deployment (NH, ME, VT). Verify base URL."
     },
+    {
+      "id": "ibi511-ia-events",
+      "name": "511IA (Iowa) - Events",
+      "kind": "ibi511",
+      "url": "https://511ia.org/api/GetEvents",
+      "jurisdiction": "IA",
+      "api_key_env": "FT_IBI511_IA_KEY",
+      "api_key_param": "key",
+      "params": { "format": "json" },
+      "enabled": false,
+      "notes": "Candidate IBI511 deployment -- verify the base URL + that it's Travel-IQ, then enable. Open-network session: confirm at 511ia.org/developers."
+    },
+    {
+      "id": "ibi511-ne-events",
+      "name": "511 Nebraska - Events",
+      "kind": "ibi511",
+      "url": "https://511.nebraska.gov/api/GetEvents",
+      "jurisdiction": "NE",
+      "api_key_env": "FT_IBI511_NE_KEY",
+      "api_key_param": "key",
+      "params": { "format": "json" },
+      "enabled": false,
+      "notes": "Candidate IBI511 deployment -- verify base URL then enable."
+    },
 
     {
       "id": "nws-alerts",
@@ -161,6 +185,58 @@
       "jurisdiction": "CA",
       "enabled": false,
       "notes": "Loop-detector speeds/flow. Requires account + custom export parser (roadmap). One of the few true free live-speed sources in the US."
+    },
+
+    {
+      "id": "cbp-border-wait",
+      "name": "CBP - Land Border Wait Times",
+      "kind": "cbp",
+      "url": "https://bwt.cbp.gov/api/waittimes",
+      "jurisdiction": null,
+      "response_format": "xml",
+      "enabled": true,
+      "notes": "Free, ungated, XML. Per-port wait minutes -> RESTRICTION events (no coordinates in the feed; a port->lon/lat lookup is a roadmap item)."
+    },
+    {
+      "id": "ncdot-incidents",
+      "name": "NCDOT DriveNC - Incidents",
+      "kind": "ncdot",
+      "url": "https://eapps.ncdot.gov/services/traffic-prod/v1/incidents",
+      "jurisdiction": "NC",
+      "enabled": false,
+      "notes": "DriveNC public REST. Verify the endpoint/params on the open-network machine, then enable."
+    },
+    {
+      "id": "ohgo-construction",
+      "name": "OHGO (Ohio DOT) - Construction",
+      "kind": "ohgo",
+      "url": "https://publicapi.ohgo.com/api/v1/construction",
+      "jurisdiction": "OH",
+      "api_key_env": "FT_OHGO_API_KEY",
+      "api_key_param": "Authorization",
+      "api_key_in": "header",
+      "enabled": false,
+      "notes": "Needs an API key. OHGO expects header 'Authorization: APIKEY <key>' -- set FT_OHGO_API_KEY to the full 'APIKEY <key>' value. Free key: https://publicapi.ohgo.com/"
+    },
+    {
+      "id": "arcgis-example",
+      "name": "ArcGIS FeatureServer (template -- point at a real city/county layer)",
+      "kind": "arcgis",
+      "url": "https://example.org/arcgis/rest/services/Traffic/FeatureServer/0/query",
+      "jurisdiction": null,
+      "params": { "where": "1=1", "outFields": "*", "f": "geojson" },
+      "enabled": false,
+      "notes": "Generic ArcGIS REST adapter. Copy this entry, set url to a real FeatureServer query layer, prefer f=geojson. Handles Esri JSON + GeoJSON and Web-Mercator."
+    },
+    {
+      "id": "socrata-example",
+      "name": "Socrata open-data (template -- point at a real city/county dataset)",
+      "kind": "socrata",
+      "url": "https://data.example.gov/resource/abcd-1234.json",
+      "jurisdiction": null,
+      "params": { "$limit": "5000" },
+      "enabled": false,
+      "notes": "Generic Socrata (SODA) adapter. Copy this entry and set url to a real resource. Heuristic field detection + Socrata point/location geo."
     }
   ]
 }

@@ -1,0 +1,4 @@
+[
+  {"id":"s1","event_type":"Street Closure","on_street":"5th Ave","description":"Parade","latitude":"40.75","longitude":"-73.98","update_date":"2026-06-27T07:00:00Z"},
+  {"id":"s2","type":"incident","location":{"type":"Point","coordinates":[-73.9,40.8]},"description":"Crash"}
+]
