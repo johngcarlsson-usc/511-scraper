@@ -103,6 +103,31 @@ def main(argv: Optional[List[str]] = None) -> int:
     p_tt.add_argument("--csv", help="CSV of 'edge_id,speed_kph' rows")
     p_tt.add_argument("--snapshot", help="GeoJSON snapshot; speeds must be edge-keyed")
 
+    # serve (roadmap #1: continuous GTFS-RT -> traffic loop) ------------------
+    p_serve = sub.add_parser(
+        "serve",
+        help="continuous GTFS-RT -> Valhalla traffic service loop (network)",
+    )
+    p_serve.add_argument(
+        "--feed", action="append", default=[], metavar="SOURCE_ID=URL",
+        help="GTFS-RT VehiclePositions feed; 'id=url' or bare url. Repeatable. "
+             "Defaults to MBTA (Boston) if none given.",
+    )
+    p_serve.add_argument("--jurisdiction", help="default jurisdiction code for feeds, e.g. MA")
+    p_serve.add_argument("--interval", type=float, default=60.0, help="poll interval seconds")
+    p_serve.add_argument("--ttl", type=float, default=600.0,
+                         help="drop edge speeds older than this many seconds")
+    p_serve.add_argument("--tar", help="Valhalla traffic.tar to write (Mode B); "
+                                       "omit for in-memory only (Mode A)")
+    p_serve.add_argument("--emit-csv", dest="emit_csv",
+                         help="write the current edge_id,speed_kph snapshot here each tick")
+    p_serve.add_argument("--max-ticks", dest="max_ticks", type=int, default=None,
+                         help="stop after N ticks (default: run until Ctrl-C)")
+    p_serve.add_argument("--concurrency", type=int, default=8,
+                         help="map-match concurrency per tick")
+    p_serve.add_argument("--min-samples", dest="min_samples", type=int, default=1,
+                         help="min probes per edge before trusting its speed")
+
     args = parser.parse_args(argv)
 
     if args.command == "check":
@@ -120,6 +145,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         return _cmd_route(args)
     if args.command == "traffic-update":
         return _cmd_traffic_update(args)
+    if args.command == "serve":
+        return _cmd_serve(args)
     parser.print_help()
     return 1
 
@@ -317,6 +344,83 @@ def _cmd_traffic_update(args) -> int:
             written += up.apply_link_speeds(snapshot.speeds)
         print(f"wrote {written} edge speed(s) into {args.tar} "
               f"({up.tile_count} tiles); skipped {getattr(up, 'skipped', 0)}")
+    return 0
+
+
+def _parse_feed_arg(spec: str, default_jurisdiction):
+    """Parse a --feed value of the form 'source_id=url' or a bare url."""
+    from .service import AgencyFeed
+
+    if "=" in spec:
+        source_id, url = spec.split("=", 1)
+        source_id = source_id.strip()
+    else:
+        url = spec
+        source_id = "gtfsrt"
+    return AgencyFeed(
+        source_id=source_id, url=url.strip(), jurisdiction=default_jurisdiction
+    )
+
+
+def _cmd_serve(args) -> int:
+    import logging
+
+    from .routing import ValhallaClient
+    from .service import AgencyFeed, EdgeSpeedStore, run_service_loop
+    from .service.loop import MBTA_VEHICLE_POSITIONS
+
+    logging.basicConfig(
+        level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s"
+    )
+    # httpx logs every request at INFO; quiet it so per-tick stats stand out.
+    logging.getLogger("httpx").setLevel(logging.WARNING)
+
+    client = ValhallaClient.from_env()
+    if not client.base_url:
+        print("FT_VALHALLA_URL is not set (put it in .env or the environment)",
+              file=sys.stderr)
+        return 1
+
+    if args.feed:
+        agencies = [_parse_feed_arg(f, args.jurisdiction) for f in args.feed]
+    else:
+        agencies = [AgencyFeed(
+            source_id="mbta-rt", url=MBTA_VEHICLE_POSITIONS,
+            jurisdiction=args.jurisdiction or "MA",
+        )]
+
+    tar_updater = None
+    if args.tar:
+        from .export.valhalla_traffic import TrafficTarUpdater
+
+        tar_updater = TrafficTarUpdater(args.tar)
+
+    store = EdgeSpeedStore(ttl_s=args.ttl)
+
+    def _on_tick(_stats):
+        if args.emit_csv:
+            with open(args.emit_csv, "w", encoding="utf-8") as fh:
+                fh.write("edge_id,speed_kph\n")
+                for edge_id, kph in sorted(store.speeds().items()):
+                    fh.write(f"{edge_id},{kph:.2f}\n")
+
+    try:
+        asyncio.run(run_service_loop(
+            agencies, client,
+            interval_s=args.interval,
+            store=store,
+            tar_updater=tar_updater,
+            max_ticks=args.max_ticks,
+            concurrency=args.concurrency,
+            min_samples=args.min_samples,
+            on_tick=_on_tick,
+        ))
+    except KeyboardInterrupt:
+        print("\nstopped (Ctrl-C).", file=sys.stderr)
+    finally:
+        if tar_updater is not None:
+            tar_updater.close()
+    print(f"final: {len(store)} edge(s) in store")
     return 0
 
 
