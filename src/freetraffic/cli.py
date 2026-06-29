@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import os
 import sys
 from typing import List, Optional
 
@@ -23,9 +24,30 @@ from .parsers import EVENT_PARSERS, SPEED_PARSERS
 from .store import TrafficSnapshot
 
 
+def _load_dotenv(path: Optional[str] = None) -> None:
+    """Load KEY=VALUE lines from ./.env into the environment (no dependency).
+
+    Existing environment variables win; set FT_ENV_FILE to point elsewhere.
+    """
+    path = path or os.environ.get("FT_ENV_FILE", ".env")
+    if not os.path.exists(path):
+        return
+    with open(path, "r", encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+
+
 def main(argv: Optional[List[str]] = None) -> int:
+    _load_dotenv()
     parser = argparse.ArgumentParser(prog="freetraffic", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
+
+    # check ---------------------------------------------------------------
+    p_check = sub.add_parser("check", help="verify Valhalla connectivity/auth (FT_VALHALLA_*)")
 
     # sources -------------------------------------------------------------
     p_sources = sub.add_parser("sources", help="inspect the feed catalog")
@@ -83,6 +105,8 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     args = parser.parse_args(argv)
 
+    if args.command == "check":
+        return _cmd_check(args)
     if args.command == "sources":
         if args.sources_command == "list":
             return _cmd_sources_list(args)
@@ -219,10 +243,16 @@ def _cmd_route(args) -> int:
         print(f"map-matched {len(snapshot.speeds)} speed(s) to edges", file=sys.stderr)
 
     router = TrafficAwareRouter(client)
-    result = asyncio.run(
-        router.route_with_eta(origin, dest, snapshot, costing=args.costing,
-                              avoid_closures=not args.no_avoid)
-    )
+    try:
+        result = asyncio.run(
+            router.route_with_eta(origin, dest, snapshot, costing=args.costing,
+                                  avoid_closures=not args.no_avoid)
+        )
+    except Exception as exc:  # noqa: BLE001
+        print(f"route failed: {exc}", file=sys.stderr)
+        print("  (check the points are within your Valhalla's coverage, and "
+              "`freetraffic check` passes)", file=sys.stderr)
+        return 1
     out = {
         "summary": result.summary,
         "length_km": result.length_km,
@@ -240,6 +270,25 @@ def _cmd_route(args) -> int:
         ],
     }
     print(json.dumps(out, indent=2))
+    return 0
+
+
+def _cmd_check(args) -> int:
+    from .routing import ValhallaClient
+
+    client = ValhallaClient.from_env()
+    if not client.base_url:
+        print("FT_VALHALLA_URL is not set (put it in .env or the environment)",
+              file=sys.stderr)
+        return 1
+    print(f"checking {client.base_url} ...", file=sys.stderr)
+    try:
+        status = asyncio.run(client.status())
+    except Exception as exc:  # noqa: BLE001
+        print(f"Valhalla check FAILED: {exc}", file=sys.stderr)
+        return 1
+    print("Valhalla OK")
+    print(json.dumps(status, indent=2))
     return 0
 
 
