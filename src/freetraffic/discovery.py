@@ -101,6 +101,54 @@ def registry_rows_to_feeds(rows: List[Dict[str, Any]]) -> List[FeedSpec]:
     return feeds
 
 
+BTS_PORTS_URL = "https://data.bts.gov/resource/keg4-3bc2.json"
+
+
+async def fetch_cbp_port_coords(*, client: Any = None, write: bool = True) -> dict:
+    """Fetch the full CBP/BTS port_code -> [lon, lat] table (open-network only).
+
+    Pulls the distinct ports from BTS Border Crossing Entry Data and, by default,
+    overwrites the bundled ``registry/cbp_ports.json`` so the CBP parser can
+    geolocate every port. Returns the mapping.
+    """
+    from .client import _require_httpx
+
+    httpx = _require_httpx()
+    owns = client is None
+    if owns:
+        client = httpx.AsyncClient(timeout=60.0, follow_redirects=True)
+    try:
+        params = {
+            "$select": "port_code,port_name,latitude,longitude",
+            "$group": "port_code,port_name,latitude,longitude",
+            "$limit": "5000",
+        }
+        resp = await client.get(BTS_PORTS_URL, params=params)
+        resp.raise_for_status()
+        rows = resp.json()
+    finally:
+        if owns:
+            await client.aclose()
+
+    ports: dict = {}
+    for row in rows if isinstance(rows, list) else []:
+        code = str(row.get("port_code", "")).zfill(4)
+        lat, lon = row.get("latitude"), row.get("longitude")
+        if code and lat and lon:
+            try:
+                ports[code] = [float(lon), float(lat)]
+            except (TypeError, ValueError):
+                continue
+    if write and ports:
+        import json
+        from importlib import resources
+
+        path = resources.files("freetraffic.registry").joinpath("cbp_ports.json")
+        with open(str(path), "w", encoding="utf-8") as fh:
+            json.dump({"ports": ports}, fh, indent=2)
+    return ports
+
+
 async def discover_wzdx_feeds(*, client: Any = None, limit: int = 5000) -> List[FeedSpec]:
     """Fetch the live WZDx registry and return discovered FeedSpecs."""
     from .client import _require_httpx  # local import to keep httpx optional

@@ -1,0 +1,9 @@
+<border_wait_time>
+  <port>
+    <port_number>070801</port_number>
+    <port_name>Alexandria Bay</port_name>
+    <passenger_vehicle_lanes>
+      <standard_lanes><delay_minutes>30</delay_minutes></standard_lanes>
+    </passenger_vehicle_lanes>
+  </port>
+</border_wait_time>

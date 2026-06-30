@@ -1,0 +1,17 @@
+<data>
+  <lcs>
+    <index>C5AB-0003-2026-06-29-19:01:00</index>
+    <recordTimestamp><recordDate>2026-06-30</recordDate><recordTime>15:18:01</recordTime><recordEpoch>1782857881</recordEpoch></recordTimestamp>
+    <location>
+      <travelFlowDirection>North</travelFlowDirection>
+      <begin><beginDistrict>3</beginDistrict><beginRoute>I-5</beginRoute><beginLatitude>38.254878</beginLatitude><beginLongitude>-121.447722</beginLongitude><beginCounty>San Joaquin</beginCounty></begin>
+      <end><endDistrict>3</endDistrict><endRoute>I-5</endRoute><endLatitude>38.320371</endLatitude><endLongitude>-121.465196</endLongitude><endCounty>Sacramento</endCounty></end>
+    </location>
+    <closure>
+      <closureID>C5AB</closureID><logNumber>3</logNumber>
+      <closureTimestamp><closureStartEpoch>1782784860</closureStartEpoch><closureEndEpoch>1782820860</closureEndEpoch><isClosureEndIndefinite>false</isClosureEndIndefinite></closureTimestamp>
+      <facility>Mainline</facility><typeOfClosure>Lane</typeOfClosure><typeOfWork>Pavement Repair</typeOfWork>
+      <estimatedDelay>10</estimatedDelay><lanesClosed>2, RShoulder</lanesClosed><totalExistingLanes>2</totalExistingLanes>
+    </closure>
+  </lcs>
+</data>

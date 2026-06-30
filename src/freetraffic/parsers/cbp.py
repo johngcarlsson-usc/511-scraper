@@ -11,10 +11,26 @@ Tolerant: the feed's element names drift; missing fields never raise.
 
 from __future__ import annotations
 
+import json
 import xml.etree.ElementTree as ET
-from typing import List, Optional
+from importlib import resources
+from typing import Dict, List, Optional
 
+from ..geometry import Geometry
 from ..models import EventStatus, EventType, RoadInfo, Severity, TrafficEvent, parse_datetime
+
+
+def _load_port_coords() -> Dict[str, list]:
+    try:
+        text = resources.files("freetraffic.registry").joinpath("cbp_ports.json").read_text(
+            encoding="utf-8"
+        )
+        return json.loads(text).get("ports", {})
+    except (FileNotFoundError, ValueError):  # pragma: no cover
+        return {}
+
+
+_PORT_COORDS = _load_port_coords()
 
 
 def parse_cbp_border_wait(
@@ -83,7 +99,7 @@ def _parse_port(port, source_id: str, jurisdiction: Optional[str]) -> Optional[T
             f"Commercial standard delay: {comm_delay} min."
         ),
         roads=[RoadInfo(name=_text(port, "crossing_name") or port_name)],
-        geometry=None,  # CBP feed has no coordinates
+        geometry=_port_geometry(port_number),  # joined from bundled BTS lookup
         updated=parse_datetime(updated),
         raw={
             "port_number": port_number, "port_name": port_name, "border": border,
@@ -92,6 +108,15 @@ def _parse_port(port, source_id: str, jurisdiction: Optional[str]) -> Optional[T
             "operational_status": status,
         },
     )
+
+
+def _port_geometry(port_number: str) -> Optional[Geometry]:
+    """CBP port_number (6-8 digits) -> coords via first-4-digit BTS port_code."""
+    code = str(port_number).strip()[:4].zfill(4)
+    lonlat = _PORT_COORDS.get(code)
+    if lonlat and len(lonlat) == 2:
+        return Geometry.point(float(lonlat[0]), float(lonlat[1]))
+    return None
 
 
 def _to_int(value) -> Optional[int]:

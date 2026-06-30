@@ -57,7 +57,9 @@ def parse_datetime(value: Any) -> Optional[datetime]:
     try:
         dt = datetime.fromisoformat(candidate)
     except ValueError:
-        for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d"):
+        # IBI/Travel-IQ "old" generation (NY/WI) uses dd/MM/yyyy HH:mm:ss.
+        for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d",
+                    "%d/%m/%Y %H:%M:%S", "%d/%m/%Y"):
             try:
                 dt = datetime.strptime(text, fmt)
                 break

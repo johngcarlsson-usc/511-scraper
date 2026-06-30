@@ -1,0 +1,14 @@
+<ERSEvents><Events>
+  <Event>
+    <EventId>2600758927261119</EventId>
+    <EventType>Traffic Incidents</EventType>
+    <EventSubType>Traffic (DMV/Crash)</EventSubType>
+    <RoadwayName>I-90</RoadwayName>
+    <Direction>WB</Direction>
+    <PrimaryLatitude>42.17097340263912</PrimaryLatitude>
+    <PrimaryLongitude>-72.18785420197223</PrimaryLongitude>
+    <LocationDescription>I-90 WB Exit MM78.6</LocationDescription>
+    <EventStatus>Open</EventStatus>
+    <LastUpdate>2026-06-30T10:00:00</LastUpdate>
+  </Event>
+</Events></ERSEvents>

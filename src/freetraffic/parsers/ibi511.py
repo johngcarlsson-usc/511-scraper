@@ -94,7 +94,7 @@ def _records(payload: Any) -> List[Dict[str, Any]]:
 
 
 def _geometry(rec: Dict[str, Any]) -> Optional[Geometry]:
-    poly = _first(rec, "EncodedPolyline", "Polyline", "encodedPolyline")
+    poly = _first(rec, "EncodedPolyline", "MapEncodedPolyline", "Polyline", "encodedPolyline")
     if isinstance(poly, str) and poly:
         coords = decode_polyline(poly, precision=5)
         if len(coords) >= 2:
@@ -162,36 +162,62 @@ def _parse_event(
     )
 
 
-def parse_ibi511_speeds(
+def parse_ibi511_traveltimes(
     payload: Any,
     *,
     source_id: str,
     jurisdiction: Optional[str] = None,
 ) -> List[LinkSpeed]:
+    """Parse the IBI/Travel-IQ NEW-gen ``traveltimes`` endpoint into LinkSpeeds.
+
+    (There is NO ``GetTrafficSpeeds`` endpoint on this platform; a handful of
+    installs -- e.g. 511WI ``/api/v2/get/traveltimes`` -- ship measured travel
+    times instead.) Fields: Distance (mi), CurrentTime/NormalTime (min),
+    Start/End lat-lon. Speed = distance / current time.
+    """
     out: List[LinkSpeed] = []
     for rec in _records(payload):
+        # Prefer an explicit speed if present; otherwise derive from distance/time.
         speed_mph = _to_float(_first(rec, "Speed", "AverageSpeed", "CurrentSpeed"))
+        distance_mi = _to_float(_first(rec, "Distance"))
+        current_min = _to_float(_first(rec, "CurrentTime", "TravelTime"))
+        normal_min = _to_float(_first(rec, "NormalTime", "AverageTime"))
+        if speed_mph is None and distance_mi and current_min and current_min > 0:
+            speed_mph = distance_mi / (current_min / 60.0)
         if speed_mph is None:
             continue
+        freeflow_mph = _to_float(_first(rec, "FreeFlowSpeed", "SpeedLimit"))
+        if freeflow_mph is None and distance_mi and normal_min and normal_min > 0:
+            freeflow_mph = distance_mi / (normal_min / 60.0)
         out.append(
             LinkSpeed(
                 source_id=source_id,
                 jurisdiction=jurisdiction,
                 speed_kph=speed_mph * MPH_TO_KPH,
-                freeflow_kph=(
-                    _to_float(_first(rec, "FreeFlowSpeed", "SpeedLimit")) or 0
-                )
-                * MPH_TO_KPH
-                or None,
+                freeflow_kph=freeflow_mph * MPH_TO_KPH if freeflow_mph else None,
                 link_id=str(_first(rec, "ID", "Id", "LinkId", "id") or "") or None,
                 roadway=_first(rec, "RoadwayName", "RoadName", "Description"),
                 direction=_first(rec, "DirectionOfTravel", "Direction"),
                 observed_at=parse_datetime(_first(rec, "LastUpdated", "Updated")),
-                geometry=_geometry(rec),
+                geometry=_traveltime_geometry(rec),
                 raw=rec,
             )
         )
     return out
+
+
+# Back-compat alias (the platform has no GetTrafficSpeeds; this is travel-times).
+parse_ibi511_speeds = parse_ibi511_traveltimes
+
+
+def _traveltime_geometry(rec: Dict[str, Any]) -> Optional[Geometry]:
+    s_lat = _to_float(_first(rec, "StartLatitude"))
+    s_lon = _to_float(_first(rec, "StartLongitude"))
+    e_lat = _to_float(_first(rec, "EndLatitude"))
+    e_lon = _to_float(_first(rec, "EndLongitude"))
+    if None not in (s_lat, s_lon, e_lat, e_lon):
+        return Geometry("LineString", [[s_lon, s_lat], [e_lon, e_lat]])
+    return _geometry(rec)
 
 
 def _map_event_type(value: Any) -> EventType:

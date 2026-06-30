@@ -1,4 +1,0 @@
-[
-  {"id":1,"incidentType":"Road Construction","road":"I-40","reason":"Bridge repair","condition":"Right lane closed","latitude":35.78,"longitude":-78.64,"start":"2026-06-01T00:00:00Z","end":"2026-08-01T00:00:00Z","direction":"East"},
-  {"id":2,"incidentType":"Incident","road":"US-1","reason":"Crash","condition":"Road Closed","latitude":35.9,"longitude":-79.0}
-]

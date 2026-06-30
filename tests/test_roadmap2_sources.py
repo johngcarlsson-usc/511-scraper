@@ -10,8 +10,10 @@ from freetraffic.client import collect_feed
 from freetraffic.models import EventType, Severity
 from freetraffic.parsers import (
     parse_arcgis,
+    parse_caltrans_lcs,
     parse_cbp_border_wait,
-    parse_ncdot,
+    parse_ibi511_events,
+    parse_massdot_events,
     parse_ohgo,
     parse_socrata,
 )
@@ -58,18 +60,6 @@ def test_ohgo():
     assert i.severity is Severity.MAJOR
 
 
-# --- NCDOT ------------------------------------------------------------------
-def test_ncdot():
-    events = parse_ncdot(_json("ncdot.json"), source_id="nc")
-    assert len(events) == 2
-    con = next(e for e in events if e.id == "nc:1")
-    assert con.event_type is EventType.CONSTRUCTION
-    assert con.roads[0].name == "I-40"
-    assert con.starts is not None and con.ends is not None
-    inc = next(e for e in events if e.id == "nc:2")
-    assert inc.event_type is EventType.INCIDENT and inc.impact.closed
-
-
 # --- Generic ArcGIS (Esri JSON + Web-Mercator) ------------------------------
 def test_arcgis_esri_mercator():
     events = parse_arcgis(_json("arcgis_esri.json"), source_id="ag", jurisdiction="CA")
@@ -107,14 +97,64 @@ def test_socrata():
     assert crash.geometry.coordinates == [-73.9, 40.8]  # from location point column
 
 
+# --- Caltrans LCS (XML) -----------------------------------------------------
+def test_caltrans_lcs():
+    events = parse_caltrans_lcs(_text("caltrans_lcs.xml"), source_id="ct")
+    assert len(events) == 1
+    e = events[0]
+    assert e.event_type is EventType.CONSTRUCTION          # "Lane" closure, not full
+    assert e.geometry.type == "LineString"
+    assert e.roads[0].name == "I-5" and e.roads[0].direction == "North"
+    assert e.impact.lanes_total == 2 and e.impact.lanes_closed == 2
+    assert e.updated is not None and e.updated.year == 2026
+    assert e.starts is not None and e.ends is not None
+
+
+# --- MassDOT events (XML) ---------------------------------------------------
+def test_massdot_events():
+    events = parse_massdot_events(_text("massdot_events.xml"), source_id="ma")
+    assert len(events) == 1
+    e = events[0]
+    assert e.event_type is EventType.INCIDENT
+    assert e.roads[0].name == "I-90" and e.roads[0].direction == "WB"
+    assert e.geometry.type == "Point"
+    assert "Exit MM78.6" in (e.headline or "")
+
+
+# --- IBI511 NEW generation (epoch-seconds timestamps) -----------------------
+def test_ibi511_new_generation_epoch():
+    events = parse_ibi511_events(_json("ibi511_new_events.json"), source_id="ut", jurisdiction="UT")
+    assert len(events) == 1
+    e = events[0]
+    assert e.event_type is EventType.CONSTRUCTION          # "roadwork"
+    assert e.geometry.type == "Point"
+    # epoch-seconds 1696369067 -> Oct 2023 (NOT misparsed as ms)
+    assert e.updated is not None and e.updated.year == 2023
+
+
+# --- CBP coordinate join (bundled BTS lookup) -------------------------------
+def test_cbp_geolocates_known_port():
+    events = parse_cbp_border_wait(_text("cbp_with_known_port.xml"), source_id="cbp")
+    assert len(events) == 1
+    # port_number 070801 -> BTS port_code 0708 (Alexandria Bay) -> has coords
+    assert events[0].geometry is not None and events[0].geometry.type == "Point"
+    lon, lat = events[0].geometry.coordinates
+    assert round(lat, 1) == 44.3 and round(lon, 1) == -76.0
+
+
 # --- catalog + the new XML fetch path --------------------------------------
 def test_registry_has_new_feeds_and_formats():
     cat = load_builtin_catalog()
     cbp = cat.get("cbp-border-wait")
     assert cbp is not None and cbp.kind == "cbp" and cbp.response_format == "xml"
     assert cat.get("ohgo-construction").kind == "ohgo"
-    assert cat.get("arcgis-example").kind == "arcgis"
-    # the new event kinds are recognized
+    assert cat.get("arcgis-ia-cars").kind == "arcgis"
+    assert cat.get("caltrans-lcs-d03").response_format == "xml"
+    # IBI NEW vs OLD generations both present, no fictional GetTrafficSpeeds feed
+    assert "v2/get/event" in cat.get("ibi511-nv-events").url        # NEW gen
+    assert cat.get("ibi511-ny-events").url.endswith("/api/GetEvents")  # OLD gen
+    assert cat.get("ibi511-ny-speeds") is None                      # fictional, removed
+    assert cat.get("ibi511-wi-traveltimes").kind == "ibi511_traveltimes"
     assert cbp.produces_events
 
 

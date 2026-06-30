@@ -21,11 +21,11 @@ from importlib import resources
 from typing import Any, Dict, List, Optional
 
 # How a feed's data is shaped / what it yields.
-EVENT_KINDS = {"open511", "wzdx", "ibi511", "nws_alerts",
-               "cbp", "ohgo", "ncdot", "arcgis", "socrata"}
+EVENT_KINDS = {"open511", "wzdx", "ibi511", "nws_alerts", "cbp", "ohgo",
+               "arcgis", "socrata", "caltrans_lcs", "massdot_events"}
 # sensor / probe / vendor link-speed feeds. "speed" is a placeholder for feeds
 # that still need a bespoke parser (roadmap).
-SPEED_KINDS = {"speed", "ibi511_speeds", "wsdot_traveltimes"}
+SPEED_KINDS = {"speed", "ibi511_traveltimes", "wsdot_traveltimes"}
 
 
 @dataclass

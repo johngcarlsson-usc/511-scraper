@@ -1,0 +1,18 @@
+[
+  {
+    "ID": "UT-Construction--2910",
+    "Organization": "UT-Construction",
+    "RoadwayName": "Mountain View Corr",
+    "DirectionOfTravel": "None",
+    "Description": "Varied rolling lane closures",
+    "Reported": 1696312800,
+    "LastUpdated": 1696369067,
+    "StartDate": 1696312800,
+    "PlannedEndDate": 1696658400,
+    "Latitude": 40.509227,
+    "Longitude": -112.003732,
+    "EventType": "roadwork",
+    "IsFullClosure": false,
+    "EventCategory": "Construction"
+  }
+]

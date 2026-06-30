@@ -1,0 +1,14 @@
+{
+  "_comment": [
+    "Lookup: 4-digit CBP/BTS port_code -> [longitude, latitude]. The CBP wait-time",
+    "feed has no coordinates; join on the first 4 digits of its port_number.",
+    "Seeded from BTS Border Crossing Entry Data (Socrata keg4-3bc2, public domain).",
+    "Populate the full table on an open-network host with:",
+    "  freetraffic.discovery.fetch_cbp_port_coords() (writes this file)."
+  ],
+  "ports": {
+    "0708": [-75.983592, 44.347229],
+    "2506": [-116.938538, 32.55033],
+    "3802": [-82.423611, 42.998611]
+  }
+}
