@@ -1,0 +1,1979 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "generated_at": "2026-06-30T22:33:09.042504+00:00",
+    "event_count": 82,
+    "speed_count": 0,
+    "errors": {}
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:070801",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Alexandria Bay: 0 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 0 min. Commercial standard delay: 0 min.",
+        "roads": [
+          {
+            "name": "Thousand Islands Bridge"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:300401",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Blaine: 5 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 5 min. Commercial standard delay: 10 min.",
+        "roads": [
+          {
+            "name": "Pacific Highway"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:300402",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Blaine: 15 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 15 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Peace Arch"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:300403",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "Blaine: border wait time",
+        "description": "Border: Canadian Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Point Roberts"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:090104",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Buffalo/Niagara Falls: 5 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 5 min. Commercial standard delay: 0 min.",
+        "roads": [
+          {
+            "name": "Lewiston Bridge"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:090101",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Buffalo/Niagara Falls: 4 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 4 min. Commercial standard delay: 2 min.",
+        "roads": [
+          {
+            "name": "Peace Bridge"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:090102",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Buffalo/Niagara Falls: 19 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 19 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Rainbow Bridge"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:090103",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "Buffalo/Niagara Falls: border wait time",
+        "description": "Border: Canadian Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Whirlpool Bridge"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:011501",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Calais: 0 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 0 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Ferry Point"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:011503",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Calais: 0 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 0 min. Commercial standard delay: 0 min.",
+        "roads": [
+          {
+            "name": "International Avenue"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:011502",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "Calais: border wait time",
+        "description": "Border: Canadian Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Milltown"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:071201",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Champlain: 0 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 0 min. Commercial standard delay: 0 min.",
+        "roads": [
+          {
+            "name": "Champlain"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:020901",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Derby Line: 5 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 5 min. Commercial standard delay: 0 min.",
+        "roads": [
+          {
+            "name": "Derby Line I-91"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:380001",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Detroit: 10 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 10 min. Commercial standard delay: 5 min.",
+        "roads": [
+          {
+            "name": "Ambassador Bridge"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:380002",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Detroit: 10 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 10 min. Commercial standard delay: 0 min.",
+        "roads": [
+          {
+            "name": "Windsor Tunnel"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:021201",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Highgate Springs: 10 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 10 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Highgate Springs"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:010601",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Houlton: 1 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 1 min. Commercial standard delay: 2 min.",
+        "roads": [
+          {
+            "name": "Houlton"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:360401",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "International Falls: 0 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 0 min. Commercial standard delay: 0 min.",
+        "roads": [
+          {
+            "name": "International Falls"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:010401",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Jackman: 0 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 0 min. Commercial standard delay: 0 min.",
+        "roads": [
+          {
+            "name": "Jackman"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:302301",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Lynden: 5 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 5 min. Commercial standard delay: 5 min.",
+        "roads": [
+          {
+            "name": "Lynden"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:L01901",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Madawaska: 15 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 15 min. Commercial standard delay: 15 min.",
+        "roads": [
+          {
+            "name": "Madawaska"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:070401",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Massena: 0 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 0 min. Commercial standard delay: 0 min.",
+        "roads": [
+          {
+            "name": "Massena"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:021101",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Norton: 0 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 0 min. Commercial standard delay: 0 min.",
+        "roads": [
+          {
+            "name": "Norton"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:070101",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Ogdensburg: 0 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 0 min. Commercial standard delay: 0 min.",
+        "roads": [
+          {
+            "name": "Ogdensburg"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:340101",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "Pembina: border wait time",
+        "description": "Border: Canadian Border. Passenger standard delay: None min. Commercial standard delay: 33 min.",
+        "roads": [
+          {
+            "name": "Pembina"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:380201",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Port Huron: 10 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 10 min. Commercial standard delay: 5 min.",
+        "roads": [
+          {
+            "name": "Bluewater Bridge"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:380301",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Sault Ste. Marie: 0 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 0 min. Commercial standard delay: 0 min.",
+        "roads": [
+          {
+            "name": "International Bridge - SSM"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:300901",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Sumas: 5 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 5 min. Commercial standard delay: 5 min.",
+        "roads": [
+          {
+            "name": "Sumas"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:331001",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "major",
+        "status": "active",
+        "headline": "Sweetgrass: 120 min wait (passenger, standard)",
+        "description": "Border: Canadian Border. Passenger standard delay: 120 min. Commercial standard delay: 120 min.",
+        "roads": [
+          {
+            "name": "Sweetgrass"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:250201",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "moderate",
+        "status": "active",
+        "headline": "Andrade: 30 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 30 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Andrade"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:240215",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "BOTA CARGO FACILITY: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "BRIDGE OF AMERICAS CARGO FACILITY"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:240207",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "Bridge of the Americas Port of Entry: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Bridge of the Americas Port of Entry"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:535501",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "moderate",
+        "status": "active",
+        "headline": "Brownsville: 30 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 30 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "B&M"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:535504",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Brownsville: 5 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 5 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Gateway"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:535503",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Brownsville: 3 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 3 min. Commercial standard delay: 2 min.",
+        "roads": [
+          {
+            "name": "Los Indios"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:535502",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "major",
+        "status": "active",
+        "headline": "Brownsville: 60 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 60 min. Commercial standard delay: 25 min.",
+        "roads": [
+          {
+            "name": "Veterans International"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:250301",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "major",
+        "status": "active",
+        "headline": "Calexico: 150 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 150 min. Commercial standard delay: 20 min.",
+        "roads": [
+          {
+            "name": "East"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:250302",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "major",
+        "status": "active",
+        "headline": "Calexico: 150 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 150 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "West"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:240601",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Columbus: 5 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 5 min. Commercial standard delay: 3 min.",
+        "roads": [
+          {
+            "name": "Columbus"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:230201",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Del Rio: 5 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 5 min. Commercial standard delay: 0 min.",
+        "roads": [
+          {
+            "name": "Del Rio"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:260101",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "major",
+        "status": "active",
+        "headline": "Douglas (Raul Hector Castro): 60 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 60 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Douglas (Raul Hector Castro)"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:230301",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "Eagle Pass: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Bridge I"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:230302",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Eagle Pass: 10 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 10 min. Commercial standard delay: 60 min.",
+        "roads": [
+          {
+            "name": "Bridge II"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:240221",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "El Paso: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "El Paso"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:240201",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "El Paso: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Bridge of the Americas (BOTA)"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:240202",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "moderate",
+        "status": "active",
+        "headline": "El Paso: 41 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 41 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Paso Del Norte (PDN)"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:240204",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "El Paso: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Stanton DCL"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:240203",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "El Paso: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: 45 min.",
+        "roads": [
+          {
+            "name": "Ysleta"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:l24501",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Fort Hancock: 5 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 5 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Fort Hancock"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:230103",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "Gateway: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Gateway"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:230503",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Hidalgo/Pharr: 10 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 10 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Anzalduas International Bridge"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:230501",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Hidalgo/Pharr: 10 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 10 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Hidalgo"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:230502",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "moderate",
+        "status": "active",
+        "headline": "Hidalgo/Pharr: 25 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 25 min. Commercial standard delay: 35 min.",
+        "roads": [
+          {
+            "name": "Pharr"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:230401",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "Laredo: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Bridge I"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:230402",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "moderate",
+        "status": "active",
+        "headline": "Laredo: 40 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 40 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Bridge II"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:230403",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Laredo: 10 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 10 min. Commercial standard delay: 10 min.",
+        "roads": [
+          {
+            "name": "Colombia Solidarity"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:230404",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "Laredo: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: 0 min.",
+        "roads": [
+          {
+            "name": "World Trade Bridge"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:260201",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Lukeville: 2 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 2 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Lukeville"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:240401",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "moderate",
+        "status": "active",
+        "headline": "Marcelino Serna: 40 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 40 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Tornillo"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:260305",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Naco: 2 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 2 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Naco"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:260301",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "moderate",
+        "status": "active",
+        "headline": "Naco: 25 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 25 min. Commercial standard delay: 1 min.",
+        "roads": [
+          {
+            "name": "Naco"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:260401",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "major",
+        "status": "active",
+        "headline": "Nogales: 45 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 45 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Deconcini"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:260402",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "major",
+        "status": "active",
+        "headline": "Nogales: 60 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 60 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Mariposa"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:260403",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "Nogales: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Morley Gate"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:250609",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "Otay Mesa: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Otay Mesa"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:250602",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "Otay Mesa: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: 40 min.",
+        "roads": [
+          {
+            "name": "Commercial"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:250601",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "major",
+        "status": "active",
+        "headline": "Otay Mesa: 150 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 150 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Passenger"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:250608",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "Otay Mesa Port of Entry: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Otay Mesa Port of Entry"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:202401",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "Paso Del Norte: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Paso Del Norte"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:240301",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "major",
+        "status": "active",
+        "headline": "Presidio: 45 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 45 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "PRESIDIO PORT OF ENTRY"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:230902",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "major",
+        "status": "active",
+        "headline": "Progreso: 45 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 45 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Donna International Bridge"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:230901",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "major",
+        "status": "active",
+        "headline": "Progreso: 60 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 60 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Progreso International Bridge"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:230701",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Rio Grande City: 5 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 5 min. Commercial standard delay: 0 min.",
+        "roads": [
+          {
+            "name": "Rio Grande City"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:231001",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "Roma: 10 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 10 min. Commercial standard delay: 0 min.",
+        "roads": [
+          {
+            "name": "Roma"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:231002",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "ROMA TEXAS: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "ROMA TEXAS"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:260801",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "minor",
+        "status": "active",
+        "headline": "San Luis: 5 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 5 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "San Luis I"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:260802",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "San Luis: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: 5 min.",
+        "roads": [
+          {
+            "name": "San Luis II"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:250401",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "major",
+        "status": "active",
+        "headline": "San Ysidro: 155 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 155 min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "San Ysidro"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:250409",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "San Ysidro: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "Cross Border Express"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:250407",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "unknown",
+        "status": "active",
+        "headline": "San Ysidro: border wait time",
+        "description": "Border: Mexican Border. Passenger standard delay: None min. Commercial standard delay: None min.",
+        "roads": [
+          {
+            "name": "PedWest"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:240801",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "major",
+        "status": "active",
+        "headline": "Santa Teresa: 45 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 45 min. Commercial standard delay: 20 min.",
+        "roads": [
+          {
+            "name": "Santa Teresa Port of Entry"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "id": "cbp-border-wait:250501",
+        "source_id": "cbp-border-wait",
+        "event_type": "restriction",
+        "subtypes": [
+          "border_wait"
+        ],
+        "severity": "major",
+        "status": "active",
+        "headline": "Tecate: 120 min wait (passenger, standard)",
+        "description": "Border: Mexican Border. Passenger standard delay: 120 min. Commercial standard delay: 15 min.",
+        "roads": [
+          {
+            "name": "Tecate"
+          }
+        ],
+        "impact": {
+          "closed": false
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "y3314",
+    "vehicle_id": "y3314",
+    "trip_id": "77167593",
+    "route_id": "455",
+    "lat": 42.45075607299805,
+    "lon": -70.97933197021484,
+    "bearing": 216.0,
+    "speed": 0.0,
+    "timestamp": 1782858810,
+    "current_status": 2
+  },
+  {
+    "id": "y1678",
+    "vehicle_id": "y1678",
+    "trip_id": "77055855",
+    "route_id": "34E",
+    "lat": 42.23416519165039,
+    "lon": -71.18357849121094,
+    "bearing": 0.0,
+    "speed": 0.0,
+    "timestamp": 1782858807,
+    "current_status": 1
+  },
+  {
+    "id": "y4302",
+    "vehicle_id": "y4302",
+    "trip_id": "76792924",
+    "route_id": "71",
+    "lat": 42.36574172973633,
+    "lon": -71.18551635742188,
+    "bearing": 45.0,
+    "speed": 0.0,
+    "timestamp": 1782858803,
+    "current_status": 1
+  }
+]

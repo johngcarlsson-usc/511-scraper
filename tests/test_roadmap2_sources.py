@@ -133,3 +133,33 @@ def test_client_xml_path():
 
     events, speeds = asyncio.run(run())
     assert len(events) == 2 and speeds == []
+
+
+def test_client_accept_header_matches_response_format():
+    """Regression: CBP (and any other content-negotiated XML feed) was getting
+    an ``Accept: application/json`` header and silently coming back as JSON,
+    which the XML parser then rejected as 'not xml'. The fetcher must request
+    the format the parser actually wants."""
+    captured = {}
+
+    def handler(request):
+        captured["accept"] = request.headers.get("accept", "")
+        if "xml" in captured["accept"]:
+            return httpx.Response(200, text="<border_wait_time/>",
+                                  headers={"content-type": "application/xml"})
+        return httpx.Response(200, json={"events": []})
+
+    xml_feed = FeedSpec(id="cbp", name="CBP", kind="cbp",
+                       url="https://bwt.example/api/waittimes", response_format="xml")
+    json_feed = FeedSpec(id="ev", name="ev", kind="ibi511",
+                        url="https://x.example/api/GetEvents")
+
+    async def run(feed):
+        async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as ac:
+            await collect_feed(feed, client=ac)
+
+    asyncio.run(run(xml_feed))
+    assert "xml" in captured["accept"] and "*/*" not in captured["accept"]
+
+    asyncio.run(run(json_feed))
+    assert captured["accept"] == "application/json"

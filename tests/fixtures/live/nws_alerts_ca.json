@@ -1,0 +1,251 @@
+{
+    "@context": [
+        "https://geojson.org/geojson-ld/geojson-context.jsonld",
+        {
+            "@version": "1.1",
+            "wx": "https://api.weather.gov/ontology#",
+            "@vocab": "https://api.weather.gov/ontology#"
+        }
+    ],
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.b80247755c23a67ee422fa56f787b08e3b6250e9.001.1",
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.b80247755c23a67ee422fa56f787b08e3b6250e9.001.1",
+                "@type": "wx:Alert",
+                "id": "urn:oid:2.49.0.1.840.0.b80247755c23a67ee422fa56f787b08e3b6250e9.001.1",
+                "areaDesc": "Kern River Valley",
+                "geocode": {
+                    "SAME": [
+                        "006029",
+                        "006107"
+                    ],
+                    "UGC": [
+                        "CAZ332"
+                    ]
+                },
+                "affectedZones": [
+                    "https://api.weather.gov/zones/forecast/CAZ332"
+                ],
+                "references": [],
+                "sent": "2026-06-30T09:39:00-07:00",
+                "effective": "2026-06-30T09:39:00-07:00",
+                "onset": "2026-06-30T16:00:00-07:00",
+                "expires": "2026-06-30T17:45:00-07:00",
+                "ends": "2026-06-30T22:00:00-07:00",
+                "status": "Actual",
+                "messageType": "Alert",
+                "category": "Met",
+                "severity": "Moderate",
+                "certainty": "Likely",
+                "urgency": "Expected",
+                "event": "Lake Wind Advisory",
+                "sender": "w-nws.webmaster@noaa.gov",
+                "senderName": "NWS Hanford CA",
+                "headline": "Lake Wind Advisory issued June 30 at 9:39AM PDT until June 30 at 10:00PM PDT by NWS Hanford CA",
+                "description": "* WHAT...Northwest winds 15 to 20 mph with gusts up to 30 mph\nexpected.\n\n* WHERE...Kern River Valley, including Lake Isabella.\n\n* WHEN...From 4 PM this afternoon to 10 PM PDT this evening.\n\n* IMPACTS...Strong winds and rough waves on area lakes will create\nhazardous conditions for small craft.",
+                "instruction": "Winds this strong can make driving difficult, especially for high\nprofile vehicles. Use extra caution.",
+                "response": "Execute",
+                "note": null,
+                "parameters": {
+                    "AWIPSidentifier": [
+                        "NPWHNX"
+                    ],
+                    "WMOidentifier": [
+                        "WWUS76 KHNX 301639"
+                    ],
+                    "NWSheadline": [
+                        "LAKE WIND ADVISORY IN EFFECT FROM 4 PM THIS AFTERNOON TO 10 PM PDT THIS EVENING"
+                    ],
+                    "BLOCKCHANNEL": [
+                        "EAS",
+                        "NWEM",
+                        "CMAS"
+                    ],
+                    "VTEC": [
+                        "/O.EXB.KHNX.LW.Y.0020.260630T2300Z-260701T0500Z/"
+                    ],
+                    "eventEndingTime": [
+                        "2026-06-30T22:00:00-07:00"
+                    ]
+                },
+                "scope": "Public",
+                "code": "IPAWSv1.0",
+                "language": "en-US",
+                "web": "http://www.weather.gov",
+                "eventCode": {
+                    "SAME": [
+                        "NWS"
+                    ],
+                    "NationalWeatherService": [
+                        "LWY"
+                    ]
+                }
+            }
+        },
+        {
+            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.b80247755c23a67ee422fa56f787b08e3b6250e9.002.1",
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.b80247755c23a67ee422fa56f787b08e3b6250e9.002.1",
+                "@type": "wx:Alert",
+                "id": "urn:oid:2.49.0.1.840.0.b80247755c23a67ee422fa56f787b08e3b6250e9.002.1",
+                "areaDesc": "West Side Mountains north of 198",
+                "geocode": {
+                    "SAME": [
+                        "006019",
+                        "006047"
+                    ],
+                    "UGC": [
+                        "CAZ300"
+                    ]
+                },
+                "affectedZones": [
+                    "https://api.weather.gov/zones/forecast/CAZ300"
+                ],
+                "references": [
+                    {
+                        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.7ed7e415e868192a8f6fdb292eb768bccf85f83c.001.1",
+                        "identifier": "urn:oid:2.49.0.1.840.0.7ed7e415e868192a8f6fdb292eb768bccf85f83c.001.1",
+                        "sender": "w-nws.webmaster@noaa.gov",
+                        "sent": "2026-06-30T03:17:00-07:00"
+                    }
+                ],
+                "sent": "2026-06-30T09:39:00-07:00",
+                "effective": "2026-06-30T09:39:00-07:00",
+                "onset": "2026-06-30T09:39:00-07:00",
+                "expires": "2026-06-30T17:45:00-07:00",
+                "ends": "2026-07-02T23:00:00-07:00",
+                "status": "Actual",
+                "messageType": "Update",
+                "category": "Met",
+                "severity": "Moderate",
+                "certainty": "Likely",
+                "urgency": "Expected",
+                "event": "Lake Wind Advisory",
+                "sender": "w-nws.webmaster@noaa.gov",
+                "senderName": "NWS Hanford CA",
+                "headline": "Lake Wind Advisory issued June 30 at 9:39AM PDT until July 2 at 11:00PM PDT by NWS Hanford CA",
+                "description": "* WHAT...West winds 10 to 20 mph with gusts up to 35 mph.\n\n* WHERE...West Side Mountains north of 198.\n\n* WHEN...Until 11 PM PDT Thursday.\n\n* IMPACTS...Strong winds and rough waves on area lakes will create\nhazardous conditions for small craft.",
+                "instruction": "Winds this strong can make driving difficult, especially for high\nprofile vehicles. Use extra caution.",
+                "response": "Execute",
+                "note": null,
+                "parameters": {
+                    "AWIPSidentifier": [
+                        "NPWHNX"
+                    ],
+                    "WMOidentifier": [
+                        "WWUS76 KHNX 301639"
+                    ],
+                    "NWSheadline": [
+                        "LAKE WIND ADVISORY REMAINS IN EFFECT UNTIL 11 PM PDT THURSDAY"
+                    ],
+                    "BLOCKCHANNEL": [
+                        "EAS",
+                        "NWEM",
+                        "CMAS"
+                    ],
+                    "VTEC": [
+                        "/O.CON.KHNX.LW.Y.0020.000000T0000Z-260703T0600Z/"
+                    ],
+                    "eventEndingTime": [
+                        "2026-07-02T23:00:00-07:00"
+                    ],
+                    "expiredReferences": [
+                        "w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.446a19786ab484301889932ab014c113f0506a3c.001.1,2026-06-29T19:31:00-07:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.d2311be589035b7ab39f4cf1ac198fd68c3075cd.001.1,2026-06-29T12:00:00-07:00"
+                    ]
+                },
+                "scope": "Public",
+                "code": "IPAWSv1.0",
+                "language": "en-US",
+                "web": "http://www.weather.gov",
+                "eventCode": {
+                    "SAME": [
+                        "NWS"
+                    ],
+                    "NationalWeatherService": [
+                        "LWY"
+                    ]
+                }
+            }
+        },
+        {
+            "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.f2d16d86db71946bc58ec5a6c05652eda3bd37f9.001.1",
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.f2d16d86db71946bc58ec5a6c05652eda3bd37f9.001.1",
+                "@type": "wx:Alert",
+                "id": "urn:oid:2.49.0.1.840.0.f2d16d86db71946bc58ec5a6c05652eda3bd37f9.001.1",
+                "areaDesc": "Coachella Valley; San Gorgonio Pass Near Banning",
+                "geocode": {
+                    "SAME": [
+                        "006065"
+                    ],
+                    "UGC": [
+                        "CAZ061",
+                        "CAZ065"
+                    ]
+                },
+                "affectedZones": [
+                    "https://api.weather.gov/zones/forecast/CAZ061",
+                    "https://api.weather.gov/zones/forecast/CAZ065"
+                ],
+                "references": [],
+                "sent": "2026-06-29T13:50:00-07:00",
+                "effective": "2026-06-29T13:50:00-07:00",
+                "onset": "2026-06-29T13:50:00-07:00",
+                "expires": "2026-07-01T09:00:00-07:00",
+                "ends": null,
+                "status": "Actual",
+                "messageType": "Alert",
+                "category": "Met",
+                "severity": "Unknown",
+                "certainty": "Unknown",
+                "urgency": "Unknown",
+                "event": "Air Quality Alert",
+                "sender": "w-nws.webmaster@noaa.gov",
+                "senderName": "NWS San Diego CA",
+                "headline": "Air Quality Alert issued June 29 at 1:50PM PDT by NWS San Diego CA",
+                "description": "* WHAT...The South Coast AQMD has issued an air quality alert due to\nharmful levels of particle pollution from windblown dust. Visit\nhttps://www.aqmd.gov/alertinfo to check current and forecasted air\nquality levels.\n\n* WHERE...in the Coachella Valley. Levels of particle pollution can\nvary by time and location depending on emissions and local weather\nconditions.\n\n* WHEN...until Wednesday morning.\n\n* IMPACTS... Particle pollution can get deep into the lungs and\ncause serious health problems such as asthma attacks, heart and lung\ndisease symptoms, and increased risk of lung infections. Everyone\ncan be affected, but sensitive groups such as people with lung or\nheart disease, older adults, people who are pregnant, children, and\nthose who spend a lot of time outdoors are at greater risk.",
+                "instruction": "To protect your health, check air quality levels and act as needed:\n\n* When Air Quality Index (AQI) levels are \"Unhealthy for\nSensitive Groups\" (orange), sensitive groups as specified\nabove should limit extended or intense outdoor activity.\n* When AQI is \"Unhealthy\" (red), everyone may experience health\nimpacts. Sensitive groups should avoid extended time outdoors.\n* When AQI is \"Very Unhealthy\" (purple), sensitive groups should\navoid all outdoor physical activity. Everyone else should\navoid extended or intense outdoor activity.\n* When AQI is \"Hazardous\" (maroon), everyone should avoid all\noutdoor physical activity.\n\n* ADDITIONAL DETAILS...\n\nTo help keep indoor air clean when air quality is poor:\n\n* Keep windows and doors closed\n* Run your air conditioner and/or an air purifier\n* Do not use whole house fans or swamp coolers that bring in\noutside air if you have other methods to stay cool\n* Avoid other sources of pollution such as fireplaces, candles,\nincense, grilling, and gasoline-powered lawn and garden\nequipment\n\nTo help minimize outdoor particle pollution levels:\n\n* Carpool, telecommute, reduce trips, or take public\ntransportation\n* Slow down if driving on dirt roads\n* Stabilize loose soils\n\nFor the latest air quality forecasts and information, visit the\nwebsite at aqmd.gov.",
+                "response": "Monitor",
+                "note": "Non-Weather Emergency Message. Not sent to IPAWS.",
+                "parameters": {
+                    "AWIPSidentifier": [
+                        "AQASGX"
+                    ],
+                    "WMOidentifier": [
+                        "AEUS76 KSGX 292050"
+                    ],
+                    "NWSheadline": [
+                        "AIR QUALITY ALERT DUE TO HARMFUL PARTICLE POLLUTION LEVELS FROM WINDBLOWN DUST"
+                    ],
+                    "BLOCKCHANNEL": [
+                        "EAS",
+                        "NWEM",
+                        "CMAS"
+                    ]
+                },
+                "scope": "Public",
+                "code": "IPAWSv1.0",
+                "language": "en-US",
+                "web": "http://www.weather.gov",
+                "eventCode": {
+                    "SAME": [
+                        "NWS"
+                    ],
+                    "NationalWeatherService": [
+                        "AQA"
+                    ]
+                }
+            }
+        }
+    ],
+    "title": "Current watches, warnings, and advisories for California",
+    "updated": "2026-06-30T22:28:57+00:00"
+}

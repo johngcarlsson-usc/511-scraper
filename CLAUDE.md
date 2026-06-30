@@ -101,17 +101,38 @@ Env vars (see `.env.example`): `FT_VALHALLA_URL/USER/PASS/NGROK`,
    fetch VehiclePositions → `GtfsRtProbeTracker.update` → `map_match_probes`
    (Valhalla) → `aggregate_by_edge` → `TrafficTarUpdater.set_speeds`, on a timer,
    for one or more agencies. This is what makes it a *running service*.
-2. **Broaden sources** (data-first). DONE so far: CBP border wait (XML),
-   OHGO, NCDOT, generic ArcGIS + Socrata adapters (parsers + offline tests); a
+   Still needs a live Valhalla end-to-end shakedown (no live server reachable
+   from the last session); a real MBTA VehiclePositions snapshot now lives at
+   `tests/fixtures/live/mbta_vehiclepositions.pb` to drive that test.
+2. **Broaden sources** (data-first). DONE: CBP border wait (XML), OHGO, NCDOT,
+   generic ArcGIS + Socrata adapters (parsers + offline tests); a
    `response_format` field + text/XML path in `client.py`; `fetch --discover`
-   already auto-ingests the WZDx registry. STILL TODO (need live validation on
-   the open-network host): verify/enable the candidate IBI511 states and the
-   NCDOT/OHGO/ArcGIS/Socrata example feeds in `registry/feeds.json`; add Caltrans
-   LCS (XML schema unconfirmed) + PeMS speeds and MassDOT; point the
-   `arcgis-example`/`socrata-example` templates at real city/county layers.
+   already auto-ingests the WZDx registry. **2026-06-30 live-probe pass:**
+   - Fixed `client.py` Accept header so xml feeds actually get xml (CBP was
+     content-negotiating to JSON and silently dropping every event).
+   - Repointed `ncdot-incidents` at `https://www.drivenc.gov/api/v2/get/event`
+     (the legacy eapps endpoint now returns a redirect notice) -- DriveNC is
+     now an IBI511/Travel-IQ stack, key required.
+   - Added `arcgis-ncdot-tims` (NCDOT TIMS Incidents via Esri-hosted
+     FeatureServer, keyless, enabled).
+   - Verified IBI511 base URLs for FL/UT/NewEngland (all return 'Invalid Key'
+     400 without `?key=`, i.e. the URLs are right -- just need keys).
+   - `ibi511-ia`/`ibi511-ne`: live-confirmed these are **not** IBI511 stacks
+     (the sites are SPAs that return index.html for `/api/*`). Left disabled
+     with explicit notes; they need bespoke adapters before they can ship.
+   - Captured trimmed live fixtures under `tests/fixtures/live/` and added
+     `tests/test_live_fixtures.py` so parser regressions against real
+     payload shape get caught.
+   - STILL TODO: register keys for FL/UT/NC/NewEngland and turn on
+     `ibi511-fl-events`/`ibi511-ut-events`/`ncdot-incidents`/`ibi511-newengland-events`
+     in production; wire a link-SPEED Socrata parser to turn on
+     `socrata-nyc-traffic-speeds`; add Caltrans LCS + PeMS, MassDOT;
+     adapters for 511IA and 511NE's actual (non-IBI511) APIs.
 3. **Validate Mode B against the live Valhalla** — confirm the `traffic.tar`
    byte format vs the running build; tune breakpoint/congestion fields; add a
-   before/after route ETA check.
+   before/after route ETA check. **Blocked from this session: no FT_VALHALLA_URL
+   reachable / no shell on the Valhalla host.** Everything offline-testable
+   in `valhalla_traffic.py` continues to round-trip.
 4. **Fusion tuning** — calibrate `FusionConfig` multipliers against observed
    data; add per-edge confidence blending when multiple measured sources agree.
 5. **Camera CV + NPMRDS** — traffic-camera vehicle detection for density/speed;

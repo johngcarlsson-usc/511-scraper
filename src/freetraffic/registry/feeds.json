@@ -95,7 +95,7 @@
       "api_key_param": "key",
       "params": { "format": "json" },
       "enabled": true,
-      "notes": "IBI511/Travel-IQ (prod-ut.ibi511.com). Verify base URL on register."
+      "notes": "IBI511/Travel-IQ (prod-ut.ibi511.com). Base URL verified 2026-06-30 (returns 'Invalid Key' 400 without ?key=)."
     },
     {
       "id": "ibi511-fl-events",
@@ -107,7 +107,7 @@
       "api_key_param": "key",
       "params": { "format": "json" },
       "enabled": true,
-      "notes": "IBI511/Travel-IQ. Verify base URL when registering at fl511.com."
+      "notes": "IBI511/Travel-IQ. Base URL verified 2026-06-30 (returns 'Invalid Key' 400 without ?key=)."
     },
     {
       "id": "ibi511-newengland-events",
@@ -119,7 +119,7 @@
       "api_key_param": "key",
       "params": { "format": "json" },
       "enabled": true,
-      "notes": "Tri-state IBI511/Travel-IQ deployment (NH, ME, VT). Verify base URL."
+      "notes": "Tri-state IBI511/Travel-IQ deployment (NH, ME, VT). Base URL verified 2026-06-30 (returns 'Invalid Key' 400 without ?key=)."
     },
     {
       "id": "ibi511-ia-events",
@@ -131,7 +131,7 @@
       "api_key_param": "key",
       "params": { "format": "json" },
       "enabled": false,
-      "notes": "Candidate IBI511 deployment -- verify the base URL + that it's Travel-IQ, then enable. Open-network session: confirm at 511ia.org/developers."
+      "notes": "NOT an IBI511/Travel-IQ deployment -- 511ia.org is a SPA (any /api/* path returns the index.html). Live-probed 2026-06-30. Needs a custom adapter; left disabled."
     },
     {
       "id": "ibi511-ne-events",
@@ -143,7 +143,7 @@
       "api_key_param": "key",
       "params": { "format": "json" },
       "enabled": false,
-      "notes": "Candidate IBI511 deployment -- verify base URL then enable."
+      "notes": "NOT an IBI511/Travel-IQ deployment -- 511.nebraska.gov is a SPA (any /api/* path returns the index.html). Live-probed 2026-06-30. Needs a custom adapter; left disabled."
     },
 
     {
@@ -199,12 +199,35 @@
     },
     {
       "id": "ncdot-incidents",
-      "name": "NCDOT DriveNC - Incidents",
-      "kind": "ncdot",
-      "url": "https://eapps.ncdot.gov/services/traffic-prod/v1/incidents",
+      "name": "NCDOT DriveNC - Events",
+      "kind": "ibi511",
+      "url": "https://www.drivenc.gov/api/v2/get/event",
       "jurisdiction": "NC",
+      "api_key_env": "FT_IBI511_NC_KEY",
+      "api_key_param": "key",
+      "params": { "format": "json" },
+      "enabled": true,
+      "notes": "As of 2026-05-27 the legacy eapps.ncdot.gov endpoint returns a deprecation notice pointing here; the new DriveNC API is an IBI511/Travel-IQ deployment. Live-probed 2026-06-30: returns Invalid Key (400) without ?key=, confirming the URL and stack. Register a key at drivenc.gov."
+    },
+    {
+      "id": "arcgis-ncdot-tims",
+      "name": "NCDOT TIMS Incidents (ArcGIS FeatureServer)",
+      "kind": "arcgis",
+      "url": "https://services.arcgis.com/NuWFvHYDMVmmxMeM/arcgis/rest/services/NCDOT_TIMS_Incidents/FeatureServer/0/query",
+      "jurisdiction": "NC",
+      "params": { "where": "1=1", "outFields": "*", "f": "geojson" },
+      "enabled": true,
+      "notes": "Keyless. Real NCDOT TIMS incidents (the same source DriveNC publishes) via Esri-hosted FeatureServer. Verified 2026-06-30 against the live arcgis parser."
+    },
+    {
+      "id": "socrata-nyc-traffic-speeds",
+      "name": "NYC DOT - Real-Time Traffic Speed Data (Socrata)",
+      "kind": "socrata",
+      "url": "https://data.cityofnewyork.us/resource/i4gi-tjb9.json",
+      "jurisdiction": "NY",
+      "params": { "$limit": "5000" },
       "enabled": false,
-      "notes": "DriveNC public REST. Verify the endpoint/params on the open-network machine, then enable."
+      "notes": "Keyless. Real NYC DOT link-speed dataset (encoded polylines + measured speed). Live-probed 2026-06-30. Disabled in registry because this is link-SPEED data, not events; the generic socrata parser is event-oriented. Wire up a speed parser before enabling."
     },
     {
       "id": "ohgo-construction",

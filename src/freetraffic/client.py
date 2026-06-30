@@ -39,7 +39,14 @@ def _require_httpx():
 def _build_request(feed: FeedSpec) -> Tuple[str, Dict[str, str], Dict[str, str]]:
     """Return (url, params, headers) with auth applied."""
     params: Dict[str, str] = dict(feed.params)
-    headers: Dict[str, str] = {"User-Agent": USER_AGENT, "Accept": "application/json"}
+    fmt = getattr(feed, "response_format", "json")
+    if fmt == "xml":
+        accept = "application/xml, text/xml;q=0.9"
+    elif fmt == "text":
+        accept = "text/plain"
+    else:
+        accept = "application/json"
+    headers: Dict[str, str] = {"User-Agent": USER_AGENT, "Accept": accept}
     if feed.needs_key:
         key = feed.api_key
         if not key:

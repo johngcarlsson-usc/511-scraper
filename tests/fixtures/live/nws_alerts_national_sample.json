@@ -1,0 +1,1257 @@
+{
+ "@context": [
+  "https://geojson.org/geojson-ld/geojson-context.jsonld",
+  {
+   "@version": "1.1",
+   "wx": "https://api.weather.gov/ontology#",
+   "@vocab": "https://api.weather.gov/ontology#"
+  }
+ ],
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.b0c69888fc40480b565434174c7dadc6cec91edf.001.1",
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -85.02,
+       29.82
+      ],
+      [
+       -85.03,
+       29.83
+      ],
+      [
+       -85.05,
+       29.9
+      ],
+      [
+       -85.02,
+       29.95
+      ],
+      [
+       -85.03,
+       29.98
+      ],
+      [
+       -85.03,
+       29.99
+      ],
+      [
+       -85.05,
+       29.99
+      ],
+      [
+       -85.06,
+       30
+      ],
+      [
+       -85.07,
+       30
+      ],
+      [
+       -85.12,
+       30.02
+      ],
+      [
+       -85.14,
+       30.04
+      ],
+      [
+       -84.81,
+       30.19
+      ],
+      [
+       -84.69,
+       30.04
+      ],
+      [
+       -85.04,
+       29.78
+      ],
+      [
+       -85.02,
+       29.82
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.b0c69888fc40480b565434174c7dadc6cec91edf.001.1",
+    "@type": "wx:Alert",
+    "id": "urn:oid:2.49.0.1.840.0.b0c69888fc40480b565434174c7dadc6cec91edf.001.1",
+    "areaDesc": "Franklin, FL; Liberty, FL",
+    "geocode": {
+     "SAME": [
+      "012037",
+      "012077"
+     ],
+     "UGC": [
+      "FLC037",
+      "FLC077"
+     ]
+    },
+    "affectedZones": [
+     "https://api.weather.gov/zones/county/FLC037",
+     "https://api.weather.gov/zones/county/FLC077"
+    ],
+    "references": [],
+    "sent": "2026-06-30T18:39:00-04:00",
+    "effective": "2026-06-30T18:39:00-04:00",
+    "onset": "2026-06-30T18:39:00-04:00",
+    "expires": "2026-06-30T19:30:00-04:00",
+    "ends": "2026-06-30T19:30:00-04:00",
+    "status": "Actual",
+    "messageType": "Alert",
+    "category": "Met",
+    "severity": "Severe",
+    "certainty": "Observed",
+    "urgency": "Immediate",
+    "event": "Severe Thunderstorm Warning",
+    "sender": "w-nws.webmaster@noaa.gov",
+    "senderName": "NWS Tallahassee FL",
+    "headline": "Severe Thunderstorm Warning issued June 30 at 6:39PM EDT until June 30 at 7:30PM EDT by NWS Tallahassee FL",
+    "description": "SVRTAE\n\nThe National Weather Service in Tallahassee has issued a\n\n* Severe Thunderstorm Warning for...\nSouthwestern Liberty County in Big Bend Florida...\nNorthwestern Franklin County in Big Bend Florida...\n\n* Until 730 PM EDT.\n\n* At 639 PM EDT, a severe thunderstorm was located 18 miles northwest\nof Carrabelle, moving southwest at 20 mph.\n\nHAZARD...60 mph wind gusts.\n\nSOURCE...Radar indicated.\n\nIMPACT...Expect damage to roofs, siding, and trees.\n\n* Locations impacted include...\nBuck Siding, Morgan Place, Sumatra, Twin Pole, Beverly, Owens\nBridge, and Fort Gadsden.",
+    "instruction": "For your protection move to an interior room on the lowest floor of a\nbuilding.",
+    "response": "Shelter",
+    "note": null,
+    "parameters": {
+     "AWIPSidentifier": [
+      "SVRTAE"
+     ],
+     "WMOidentifier": [
+      "WUUS52 KTAE 302239"
+     ],
+     "eventMotionDescription": [
+      "2026-06-30T22:39:00-00:00...storm...055DEG...17KT...30.07,-84.83"
+     ],
+     "windThreat": [
+      "RADAR INDICATED"
+     ],
+     "maxWindGust": [
+      "60 MPH"
+     ],
+     "hailThreat": [
+      "RADAR INDICATED"
+     ],
+     "maxHailSize": [
+      "Up to .75"
+     ],
+     "BLOCKCHANNEL": [
+      "EAS",
+      "NWEM",
+      "CMAS"
+     ],
+     "EAS-ORG": [
+      "WXR"
+     ],
+     "VTEC": [
+      "/O.NEW.KTAE.SV.W.0172.260630T2239Z-260630T2330Z/"
+     ],
+     "eventEndingTime": [
+      "2026-06-30T19:30:00-04:00"
+     ]
+    },
+    "scope": "Public",
+    "code": "IPAWSv1.0",
+    "language": "en-US",
+    "web": "http://www.weather.gov",
+    "eventCode": {
+     "SAME": [
+      "SVR"
+     ],
+     "NationalWeatherService": [
+      "SVW"
+     ]
+    }
+   }
+  },
+  {
+   "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.72d7ed90ee3802578cdfe0f518623e3dd271b544.001.1",
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -88.44,
+       44.68
+      ],
+      [
+       -88.45,
+       44.83
+      ],
+      [
+       -87.8,
+       44.93
+      ],
+      [
+       -87.81,
+       44.83
+      ],
+      [
+       -87.93,
+       44.71
+      ],
+      [
+       -87.93,
+       44.68
+      ],
+      [
+       -88.44,
+       44.68
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.72d7ed90ee3802578cdfe0f518623e3dd271b544.001.1",
+    "@type": "wx:Alert",
+    "id": "urn:oid:2.49.0.1.840.0.72d7ed90ee3802578cdfe0f518623e3dd271b544.001.1",
+    "areaDesc": "Oconto, WI; Shawano, WI",
+    "geocode": {
+     "SAME": [
+      "055083",
+      "055115"
+     ],
+     "UGC": [
+      "WIC083",
+      "WIC115"
+     ]
+    },
+    "affectedZones": [
+     "https://api.weather.gov/zones/county/WIC083",
+     "https://api.weather.gov/zones/county/WIC115"
+    ],
+    "references": [],
+    "sent": "2026-06-30T17:37:00-05:00",
+    "effective": "2026-06-30T17:37:00-05:00",
+    "onset": "2026-06-30T17:37:00-05:00",
+    "expires": "2026-06-30T18:30:00-05:00",
+    "ends": "2026-06-30T18:30:00-05:00",
+    "status": "Actual",
+    "messageType": "Alert",
+    "category": "Met",
+    "severity": "Severe",
+    "certainty": "Observed",
+    "urgency": "Immediate",
+    "event": "Severe Thunderstorm Warning",
+    "sender": "w-nws.webmaster@noaa.gov",
+    "senderName": "NWS Green Bay WI",
+    "headline": "Severe Thunderstorm Warning issued June 30 at 5:37PM CDT until June 30 at 6:30PM CDT by NWS Green Bay WI",
+    "description": "SVRGRB\n\nThe National Weather Service in Green Bay has issued a\n\n* Severe Thunderstorm Warning for...\nSouthern Oconto County in northeastern Wisconsin...\nEast Central Shawano County in northeastern Wisconsin...\n\n* Until 630 PM CDT.\n\n* At 537 PM CDT, a severe thunderstorm was located 7 miles northwest\nof Pulaski, or 12 miles east of Shawano, moving east at 35 mph.\n\nHAZARD...60 mph wind gusts and small hail.\n\nSOURCE...Radar indicated.\n\nIMPACT...Expect damage to roofs, siding, and trees.\n\n* This severe thunderstorm will be near...\nPulaski around 545 PM CDT.\n\nOther locations impacted by the severe thunderstorm include Zachow,\nAdvance, Pulcifer, Bonduel, Krakow, Green Valley, Sampson, Morgan,\nChase and South Chase.",
+    "instruction": "Seek shelter inside a well-built structure and stay away from\nwindows. This storm is capable of producing damaging winds.",
+    "response": "Shelter",
+    "note": null,
+    "parameters": {
+     "AWIPSidentifier": [
+      "SVRGRB"
+     ],
+     "WMOidentifier": [
+      "WUUS53 KGRB 302237"
+     ],
+     "eventMotionDescription": [
+      "2026-06-30T22:36:00-00:00...storm...259DEG...25KT...44.74,-88.35"
+     ],
+     "windThreat": [
+      "RADAR INDICATED"
+     ],
+     "maxWindGust": [
+      "60 MPH"
+     ],
+     "hailThreat": [
+      "RADAR INDICATED"
+     ],
+     "BLOCKCHANNEL": [
+      "EAS",
+      "NWEM",
+      "CMAS"
+     ],
+     "EAS-ORG": [
+      "WXR"
+     ],
+     "VTEC": [
+      "/O.NEW.KGRB.SV.W.0088.260630T2237Z-260630T2330Z/"
+     ],
+     "eventEndingTime": [
+      "2026-06-30T18:30:00-05:00"
+     ]
+    },
+    "scope": "Public",
+    "code": "IPAWSv1.0",
+    "language": "en-US",
+    "web": "http://www.weather.gov",
+    "eventCode": {
+     "SAME": [
+      "SVR"
+     ],
+     "NationalWeatherService": [
+      "SVW"
+     ]
+    }
+   }
+  },
+  {
+   "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.09035c01046e1b8ed501b9d9a2a822660cd9805f.001.1",
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -113.65,
+       48.83
+      ],
+      [
+       -113.49,
+       48.85
+      ],
+      [
+       -113.47,
+       48.83
+      ],
+      [
+       -113.58,
+       48.8
+      ],
+      [
+       -113.59,
+       48.77
+      ],
+      [
+       -113.62,
+       48.73
+      ],
+      [
+       -113.65,
+       48.74
+      ],
+      [
+       -113.66,
+       48.76
+      ],
+      [
+       -113.68,
+       48.78
+      ],
+      [
+       -113.7,
+       48.79
+      ],
+      [
+       -113.7,
+       48.8
+      ],
+      [
+       -113.68,
+       48.8
+      ],
+      [
+       -113.65,
+       48.83
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.09035c01046e1b8ed501b9d9a2a822660cd9805f.001.1",
+    "@type": "wx:Alert",
+    "id": "urn:oid:2.49.0.1.840.0.09035c01046e1b8ed501b9d9a2a822660cd9805f.001.1",
+    "areaDesc": "Glacier, MT",
+    "geocode": {
+     "SAME": [
+      "030035"
+     ],
+     "UGC": [
+      "MTC035"
+     ]
+    },
+    "affectedZones": [
+     "https://api.weather.gov/zones/county/MTC035"
+    ],
+    "references": [],
+    "sent": "2026-06-30T16:30:00-06:00",
+    "effective": "2026-06-30T16:30:00-06:00",
+    "onset": "2026-06-30T16:30:00-06:00",
+    "expires": "2026-07-01T16:30:00-06:00",
+    "ends": "2026-07-01T16:30:00-06:00",
+    "status": "Actual",
+    "messageType": "Alert",
+    "category": "Met",
+    "severity": "Severe",
+    "certainty": "Likely",
+    "urgency": "Expected",
+    "event": "Flood Warning",
+    "sender": "w-nws.webmaster@noaa.gov",
+    "senderName": "NWS Great Falls MT",
+    "headline": "Flood Warning issued June 30 at 4:30PM MDT until July 1 at 4:30PM MDT by NWS Great Falls MT",
+    "description": "* WHAT...Flooding caused by excessive rainfall is expected.\n\n* WHERE...Northwestern Glacier County in north central Montana...\n\n* WHEN...Until 430 PM MDT Wednesday.\n\n* IMPACTS...Flooding of rivers, creeks, streams, and other low-lying\nand flood-prone locations is imminent or occurring.\n\n* ADDITIONAL DETAILS...\n- At 429 PM MDT, local law enforcement reported ongoing flooding in\nthe warned area.\n- Flooding impacts due to Swift Creek overflowing its banks will\ncontinue, but no additional rainfall is expected.\n- Some locations that will experience flooding include...\nMany Glacier and adjacent areas.\n- http://www.weather.gov/safety/flood",
+    "instruction": "Turn around, don't drown when encountering flooded roads. Most flood\ndeaths occur in vehicles.\n\nFlooding is occurring or is imminent. It is important to know where\nyou are relative to streams, rivers, or creeks which can become\nkillers in heavy rains. Boaters, campers, and hikers should avoid\nusing or going near streams or creeks.",
+    "response": "Avoid",
+    "note": null,
+    "parameters": {
+     "AWIPSidentifier": [
+      "FLWTFX"
+     ],
+     "WMOidentifier": [
+      "WGUS45 KTFX 302230"
+     ],
+     "NWSheadline": [
+      "FLOOD WARNING IN EFFECT UNTIL 430 PM MDT WEDNESDAY"
+     ],
+     "BLOCKCHANNEL": [
+      "EAS",
+      "NWEM",
+      "CMAS"
+     ],
+     "EAS-ORG": [
+      "WXR"
+     ],
+     "VTEC": [
+      "/O.NEW.KTFX.FA.W.0004.260630T2230Z-260701T2230Z/"
+     ],
+     "eventEndingTime": [
+      "2026-07-01T16:30:00-06:00"
+     ]
+    },
+    "scope": "Public",
+    "code": "IPAWSv1.0",
+    "language": "en-US",
+    "web": "http://www.weather.gov",
+    "eventCode": {
+     "SAME": [
+      "FLW"
+     ],
+     "NationalWeatherService": [
+      "FAW"
+     ]
+    }
+   }
+  },
+  {
+   "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.021087e0370987bce7a027eea6252868668a0844.001.1",
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -88.04,
+       45.67
+      ],
+      [
+       -87.98,
+       45.78
+      ],
+      [
+       -87.96,
+       45.76
+      ],
+      [
+       -87.88,
+       45.75
+      ],
+      [
+       -87.86,
+       45.73
+      ],
+      [
+       -87.81,
+       45.71
+      ],
+      [
+       -87.81,
+       45.7
+      ],
+      [
+       -87.78,
+       45.68
+      ],
+      [
+       -87.81,
+       45.67
+      ],
+      [
+       -87.82,
+       45.67
+      ],
+      [
+       -87.83,
+       45.65
+      ],
+      [
+       -87.78,
+       45.61
+      ],
+      [
+       -87.78,
+       45.59
+      ],
+      [
+       -87.79,
+       45.57
+      ],
+      [
+       -87.81,
+       45.56
+      ],
+      [
+       -87.83,
+       45.57
+      ],
+      [
+       -87.83,
+       45.56
+      ],
+      [
+       -87.89,
+       45.53
+      ],
+      [
+       -88.04,
+       45.67
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.021087e0370987bce7a027eea6252868668a0844.001.1",
+    "@type": "wx:Alert",
+    "id": "urn:oid:2.49.0.1.840.0.021087e0370987bce7a027eea6252868668a0844.001.1",
+    "areaDesc": "Marinette, WI",
+    "geocode": {
+     "SAME": [
+      "055075"
+     ],
+     "UGC": [
+      "WIC075"
+     ]
+    },
+    "affectedZones": [
+     "https://api.weather.gov/zones/county/WIC075"
+    ],
+    "references": [],
+    "sent": "2026-06-30T17:30:00-05:00",
+    "effective": "2026-06-30T17:30:00-05:00",
+    "onset": "2026-06-30T17:30:00-05:00",
+    "expires": "2026-06-30T17:45:00-05:00",
+    "ends": "2026-06-30T17:45:00-05:00",
+    "status": "Actual",
+    "messageType": "Alert",
+    "category": "Met",
+    "severity": "Severe",
+    "certainty": "Observed",
+    "urgency": "Immediate",
+    "event": "Severe Thunderstorm Warning",
+    "sender": "w-nws.webmaster@noaa.gov",
+    "senderName": "NWS Green Bay WI",
+    "headline": "Severe Thunderstorm Warning issued June 30 at 5:30PM CDT until June 30 at 5:45PM CDT by NWS Green Bay WI",
+    "description": "SVRGRB\n\nThe National Weather Service in Green Bay has issued a\n\n* Severe Thunderstorm Warning for...\nNorth Central Marinette County in northeastern Wisconsin...\n\n* Until 545 PM CDT.\n\n* At 530 PM CDT, a severe thunderstorm was located near Pembine, or\n40 miles north of Marinette, moving northeast at 20 mph.\n\nHAZARD...60 mph wind gusts and quarter size hail.\n\nSOURCE...Radar indicated.\n\nIMPACT...Hail damage to vehicles is expected. Expect wind damage to\nroofs, siding, and trees.\n\n* Other locations impacted by the severe thunderstorm include\nMiscauno Island and Kremlin.",
+    "instruction": "Seek shelter inside a well-built structure and stay away from\nwindows. This storm is capable of producing damaging winds and large\nhail.",
+    "response": "Shelter",
+    "note": null,
+    "parameters": {
+     "AWIPSidentifier": [
+      "SVRGRB"
+     ],
+     "WMOidentifier": [
+      "WUUS53 KGRB 302230"
+     ],
+     "eventMotionDescription": [
+      "2026-06-30T22:29:00-00:00...storm...234DEG...21KT...45.63,-87.92"
+     ],
+     "windThreat": [
+      "RADAR INDICATED"
+     ],
+     "maxWindGust": [
+      "60 MPH"
+     ],
+     "hailThreat": [
+      "RADAR INDICATED"
+     ],
+     "maxHailSize": [
+      "1.00"
+     ],
+     "BLOCKCHANNEL": [
+      "EAS",
+      "NWEM",
+      "CMAS"
+     ],
+     "EAS-ORG": [
+      "WXR"
+     ],
+     "VTEC": [
+      "/O.NEW.KGRB.SV.W.0087.260630T2230Z-260630T2245Z/"
+     ],
+     "eventEndingTime": [
+      "2026-06-30T17:45:00-05:00"
+     ]
+    },
+    "scope": "Public",
+    "code": "IPAWSv1.0",
+    "language": "en-US",
+    "web": "http://www.weather.gov",
+    "eventCode": {
+     "SAME": [
+      "SVR"
+     ],
+     "NationalWeatherService": [
+      "SVW"
+     ]
+    }
+   }
+  },
+  {
+   "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.82819617da71eeba26a4b2429f577277afd3e8e8.001.1",
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -87.83,
+       45.56
+      ],
+      [
+       -87.78,
+       45.59
+      ],
+      [
+       -87.78,
+       45.61
+      ],
+      [
+       -87.83,
+       45.66
+      ],
+      [
+       -87.78,
+       45.68
+      ],
+      [
+       -87.88,
+       45.75
+      ],
+      [
+       -87.96,
+       45.76
+      ],
+      [
+       -87.99,
+       45.77
+      ],
+      [
+       -87.99,
+       45.79
+      ],
+      [
+       -87.81,
+       45.99
+      ],
+      [
+       -87.36,
+       45.98
+      ],
+      [
+       -87.37,
+       45.9
+      ],
+      [
+       -87.32,
+       45.89
+      ],
+      [
+       -87.33,
+       45.71
+      ],
+      [
+       -87.83,
+       45.56
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.82819617da71eeba26a4b2429f577277afd3e8e8.001.1",
+    "@type": "wx:Alert",
+    "id": "urn:oid:2.49.0.1.840.0.82819617da71eeba26a4b2429f577277afd3e8e8.001.1",
+    "areaDesc": "Dickinson, MI; Menominee, MI",
+    "geocode": {
+     "SAME": [
+      "026043",
+      "026109"
+     ],
+     "UGC": [
+      "MIC043",
+      "MIC109"
+     ]
+    },
+    "affectedZones": [
+     "https://api.weather.gov/zones/county/MIC043",
+     "https://api.weather.gov/zones/county/MIC109"
+    ],
+    "references": [],
+    "sent": "2026-06-30T17:29:00-05:00",
+    "effective": "2026-06-30T17:29:00-05:00",
+    "onset": "2026-06-30T17:29:00-05:00",
+    "expires": "2026-06-30T18:30:00-05:00",
+    "ends": "2026-06-30T18:30:00-05:00",
+    "status": "Actual",
+    "messageType": "Alert",
+    "category": "Met",
+    "severity": "Severe",
+    "certainty": "Observed",
+    "urgency": "Immediate",
+    "event": "Severe Thunderstorm Warning",
+    "sender": "w-nws.webmaster@noaa.gov",
+    "senderName": "NWS Marquette MI",
+    "headline": "Severe Thunderstorm Warning issued June 30 at 5:29PM CDT until June 30 at 6:30PM CDT by NWS Marquette MI",
+    "description": "SVRMQT\n\nThe National Weather Service in Marquette has issued a\n\n* Severe Thunderstorm Warning for...\nSoutheastern Dickinson County in south central Upper Michigan...\nNorthern Menominee County in south central Upper Michigan...\n\n* Until 630 PM CDT.\n\n* At 529 PM CDT, a severe thunderstorm was located near Norway, or 12\nmiles southeast of Iron Mountain, moving northeast at 45 mph.\n\nHAZARD...60 mph wind gusts and quarter size hail.\n\nSOURCE...Radar indicated.\n\nIMPACT...Hail damage to vehicles is expected. Expect wind damage\nto roofs, siding, and trees.\n\n* Locations impacted include...\nNorway, Powers, Hermansville, Foster City, La Branche, Wilson,\nSpalding, Niagara, Whitney, Waucedah, Faithorn, and Loretto.",
+    "instruction": "For your protection move to an interior room on the lowest floor of a\nbuilding.",
+    "response": "Shelter",
+    "note": null,
+    "parameters": {
+     "AWIPSidentifier": [
+      "SVRMQT"
+     ],
+     "WMOidentifier": [
+      "WUUS53 KMQT 302229"
+     ],
+     "eventMotionDescription": [
+      "2026-06-30T22:29:00-00:00...storm...228DEG...37KT...45.69,-87.88"
+     ],
+     "windThreat": [
+      "RADAR INDICATED"
+     ],
+     "maxWindGust": [
+      "60 MPH"
+     ],
+     "hailThreat": [
+      "RADAR INDICATED"
+     ],
+     "maxHailSize": [
+      "1.00"
+     ],
+     "BLOCKCHANNEL": [
+      "EAS",
+      "NWEM",
+      "CMAS"
+     ],
+     "EAS-ORG": [
+      "WXR"
+     ],
+     "VTEC": [
+      "/O.NEW.KMQT.SV.W.0011.260630T2229Z-260630T2330Z/"
+     ],
+     "eventEndingTime": [
+      "2026-06-30T18:30:00-05:00"
+     ]
+    },
+    "scope": "Public",
+    "code": "IPAWSv1.0",
+    "language": "en-US",
+    "web": "http://www.weather.gov",
+    "eventCode": {
+     "SAME": [
+      "SVR"
+     ],
+     "NationalWeatherService": [
+      "SVW"
+     ]
+    }
+   }
+  },
+  {
+   "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.539a1af9768fece3d848ce8c307d57a1bee817b1.001.1",
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -81.68,
+       36.12
+      ],
+      [
+       -81.81,
+       36.11
+      ],
+      [
+       -81.83,
+       36.16
+      ],
+      [
+       -81.85,
+       36.19
+      ],
+      [
+       -81.82,
+       36.28
+      ],
+      [
+       -81.72,
+       36.34
+      ],
+      [
+       -81.66,
+       36.32
+      ],
+      [
+       -81.67,
+       36.21
+      ],
+      [
+       -81.68,
+       36.12
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.539a1af9768fece3d848ce8c307d57a1bee817b1.001.1",
+    "@type": "wx:Alert",
+    "id": "urn:oid:2.49.0.1.840.0.539a1af9768fece3d848ce8c307d57a1bee817b1.001.1",
+    "areaDesc": "Watauga, NC",
+    "geocode": {
+     "SAME": [
+      "037189"
+     ],
+     "UGC": [
+      "NCC189"
+     ]
+    },
+    "affectedZones": [
+     "https://api.weather.gov/zones/county/NCC189"
+    ],
+    "references": [],
+    "sent": "2026-06-30T18:22:00-04:00",
+    "effective": "2026-06-30T18:22:00-04:00",
+    "onset": "2026-06-30T18:22:00-04:00",
+    "expires": "2026-06-30T20:15:00-04:00",
+    "ends": "2026-06-30T20:15:00-04:00",
+    "status": "Actual",
+    "messageType": "Alert",
+    "category": "Met",
+    "severity": "Minor",
+    "certainty": "Likely",
+    "urgency": "Expected",
+    "event": "Flood Advisory",
+    "sender": "w-nws.webmaster@noaa.gov",
+    "senderName": "NWS Blacksburg VA",
+    "headline": "Flood Advisory issued June 30 at 6:22PM EDT until June 30 at 8:15PM EDT by NWS Blacksburg VA",
+    "description": "* WHAT...Flooding caused by excessive rainfall is expected.\n\n* WHERE...A portion of northwest North Carolina, including the\nfollowing county, Watauga.\n\n* WHEN...Until 815 PM EDT.\n\n* IMPACTS...Minor flooding in low-lying and poor drainage areas.\nSome low-water crossings may become impassable.\n\n* ADDITIONAL DETAILS...\n- At 622 PM EDT, Doppler radar indicated heavy rain due to\nthunderstorms. Minor flooding is ongoing or expected to begin\nshortly in the advisory area. Between 1 and 2 inches of rain\nhave fallen.\n- This includes the following streams and drainages...\nLaurel Creek, Beaverdam Creek, Craborchard Creek, Beech\nCreek, Meat Camp Creek, Spice Bottom Creek, Norris Fork,\nDutch Creek, Brushy Fork, Cove Creek, George Gap Branch,\nSouth Fork Ellison Branch, Laurel Fork, Kirby Branch and\nLaurel Branch.\n- Some locations that will experience flooding include...\nBoone...                           Blowing Rock...\nFoscoe...                          Sugar Grove...\nSeven Devils...                    Lovill...\nValle Crucis...\n- http://www.weather.gov/safety/flood",
+    "instruction": "Turn around, don't drown when encountering flooded roads. Most flood\ndeaths occur in vehicles.\n\nWhen it is safe to do so, please send your reports of flooding,\nincluding mudslides or flooded roads, to the National Weather\nService by calling toll free at 1...8 6 6...2 1 5...4 3 2 4. Reports\nand pictures can also be shared on the National Weather Service\nBlacksburg Facebook page and on X.",
+    "response": "Avoid",
+    "note": null,
+    "parameters": {
+     "AWIPSidentifier": [
+      "FLSRNK"
+     ],
+     "WMOidentifier": [
+      "WGUS81 KRNK 302222"
+     ],
+     "NWSheadline": [
+      "FLOOD ADVISORY IN EFFECT UNTIL 815 PM EDT THIS EVENING"
+     ],
+     "BLOCKCHANNEL": [
+      "EAS",
+      "NWEM",
+      "CMAS"
+     ],
+     "VTEC": [
+      "/O.NEW.KRNK.FA.Y.0026.260630T2222Z-260701T0015Z/"
+     ],
+     "eventEndingTime": [
+      "2026-06-30T20:15:00-04:00"
+     ]
+    },
+    "scope": "Public",
+    "code": "IPAWSv1.0",
+    "language": "en-US",
+    "web": "http://www.weather.gov",
+    "eventCode": {
+     "SAME": [
+      "NWS"
+     ],
+     "NationalWeatherService": [
+      "FAY"
+     ]
+    }
+   }
+  },
+  {
+   "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.963e80e59bae13a15064c17b119ff9dc6c4cd5b3.001.1",
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -100.54,
+       34.94
+      ],
+      [
+       -100.54,
+       34.91
+      ],
+      [
+       -100.54,
+       34.89
+      ],
+      [
+       -100.54,
+       34.87
+      ],
+      [
+       -100.54,
+       34.78
+      ],
+      [
+       -100.54,
+       34.75
+      ],
+      [
+       -100.83,
+       34.75
+      ],
+      [
+       -100.78,
+       34.92
+      ],
+      [
+       -100.7,
+       35
+      ],
+      [
+       -100.54,
+       35.01
+      ],
+      [
+       -100.54,
+       34.99
+      ],
+      [
+       -100.54,
+       34.94
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.963e80e59bae13a15064c17b119ff9dc6c4cd5b3.001.1",
+    "@type": "wx:Alert",
+    "id": "urn:oid:2.49.0.1.840.0.963e80e59bae13a15064c17b119ff9dc6c4cd5b3.001.1",
+    "areaDesc": "Donley, TX",
+    "geocode": {
+     "SAME": [
+      "048129"
+     ],
+     "UGC": [
+      "TXC129"
+     ]
+    },
+    "affectedZones": [
+     "https://api.weather.gov/zones/county/TXC129"
+    ],
+    "references": [],
+    "sent": "2026-06-30T16:25:00-05:00",
+    "effective": "2026-06-30T16:25:00-05:00",
+    "onset": "2026-06-30T16:25:00-05:00",
+    "expires": "2026-06-30T19:15:00-05:00",
+    "ends": "2026-06-30T19:15:00-05:00",
+    "status": "Actual",
+    "messageType": "Alert",
+    "category": "Met",
+    "severity": "Severe",
+    "certainty": "Likely",
+    "urgency": "Immediate",
+    "event": "Flash Flood Warning",
+    "sender": "w-nws.webmaster@noaa.gov",
+    "senderName": "NWS Amarillo TX",
+    "headline": "Flash Flood Warning issued June 30 at 4:25PM CDT until June 30 at 7:15PM CDT by NWS Amarillo TX",
+    "description": "FFWAMA\n\nThe National Weather Service in Amarillo has issued a\n\n* Flash Flood Warning for...\nSoutheastern Donley County in the panhandle of Texas...\n\n* Until 715 PM CDT.\n\n* At 425 PM CDT, Doppler radar indicated thunderstorms producing\nheavy rain across the warned area. Between 0.5 and 2 inches of\nrain have fallen. The expected rainfall rate is 0.6 inches in 10\nminutes. Flash flooding is ongoing or expected to begin shortly.\n\nHAZARD...Flash flooding caused by thunderstorms.\n\nSOURCE...Radar.\n\nIMPACT...Flash flooding of small creeks and streams, urban\nareas, highways, streets and underpasses as well as\nother poor drainage and low-lying areas.\n\n* Some locations that will experience flash flooding include...\nHedley and Lelia Lake.\n\nArea has already seen significant rainfall in the last 24 hours,\nwhich can make locations more prone to flash flooding.",
+    "instruction": "Turn around, don't drown when encountering flooded roads. Most flood\ndeaths occur in vehicles.\n\nBe aware of your surroundings and do not drive on flooded roads.\n\nIn hilly terrain there are hundreds of low water crossings which are\npotentially dangerous in heavy rain. Do not attempt to cross flooded\nroads. Find an alternate route.",
+    "response": "Avoid",
+    "note": null,
+    "parameters": {
+     "AWIPSidentifier": [
+      "FFWAMA"
+     ],
+     "WMOidentifier": [
+      "WGUS54 KAMA 302125"
+     ],
+     "flashFloodDetection": [
+      "RADAR INDICATED"
+     ],
+     "BLOCKCHANNEL": [
+      "EAS",
+      "NWEM",
+      "CMAS"
+     ],
+     "EAS-ORG": [
+      "WXR"
+     ],
+     "VTEC": [
+      "/O.NEW.KAMA.FF.W.0020.260630T2125Z-260701T0015Z/"
+     ],
+     "eventEndingTime": [
+      "2026-06-30T19:15:00-05:00"
+     ]
+    },
+    "scope": "Public",
+    "code": "IPAWSv1.0",
+    "language": "en-US",
+    "web": "http://www.weather.gov",
+    "eventCode": {
+     "SAME": [
+      "FFW"
+     ],
+     "NationalWeatherService": [
+      "FFW"
+     ]
+    }
+   }
+  },
+  {
+   "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.e20d1e73e78ea6b6bd33e9e72ebf4e583314e98d.001.1",
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -81.4,
+       26.81
+      ],
+      [
+       -81.33,
+       26.76
+      ],
+      [
+       -81.31,
+       26.7
+      ],
+      [
+       -81.34,
+       26.68
+      ],
+      [
+       -81.43,
+       26.69
+      ],
+      [
+       -81.49,
+       26.74
+      ],
+      [
+       -81.44,
+       26.79
+      ],
+      [
+       -81.4,
+       26.81
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.e20d1e73e78ea6b6bd33e9e72ebf4e583314e98d.001.1",
+    "@type": "wx:Alert",
+    "id": "urn:oid:2.49.0.1.840.0.e20d1e73e78ea6b6bd33e9e72ebf4e583314e98d.001.1",
+    "areaDesc": "Glades, FL; Hendry, FL",
+    "geocode": {
+     "SAME": [
+      "012043",
+      "012051"
+     ],
+     "UGC": [
+      "FLC043",
+      "FLC051"
+     ]
+    },
+    "affectedZones": [
+     "https://api.weather.gov/zones/county/FLC043",
+     "https://api.weather.gov/zones/county/FLC051"
+    ],
+    "references": [],
+    "sent": "2026-06-30T17:05:00-04:00",
+    "effective": "2026-06-30T17:05:00-04:00",
+    "onset": "2026-06-30T17:05:00-04:00",
+    "expires": "2026-06-30T19:00:00-04:00",
+    "ends": "2026-06-30T19:00:00-04:00",
+    "status": "Actual",
+    "messageType": "Alert",
+    "category": "Met",
+    "severity": "Minor",
+    "certainty": "Likely",
+    "urgency": "Expected",
+    "event": "Flood Advisory",
+    "sender": "w-nws.webmaster@noaa.gov",
+    "senderName": "NWS Miami FL",
+    "headline": "Flood Advisory issued June 30 at 5:05PM EDT until June 30 at 7:00PM EDT by NWS Miami FL",
+    "description": "* WHAT...Flooding caused by excessive rainfall is expected.\n\n* WHERE...A portion of southern Florida, including the following\ncounties, Glades and Hendry.\n\n* WHEN...Until 700 PM EDT.\n\n* IMPACTS...Minor flooding in low-lying and poor drainage areas.\nWater over roadways.\n\n* ADDITIONAL DETAILS...\n- At 505 PM EDT, Doppler radar indicated heavy rain due to\nthunderstorms. Minor flooding is ongoing or expected to begin\nshortly in the advisory area. Between 1.5 and 2 inches of\nrain have fallen.\n- Additional rainfall amounts of 1 to 2 inches are expected\nover the area. This additional rain will result in minor\nflooding.\n- Some locations that will experience flooding include...\nLabelle and Port La Belle.\n- http://www.weather.gov/safety/flood",
+    "instruction": "Turn around, don't drown when encountering flooded roads. Most flood\ndeaths occur in vehicles.\n\nBe aware of your surroundings and do not drive on flooded roads.",
+    "response": "Avoid",
+    "note": null,
+    "parameters": {
+     "AWIPSidentifier": [
+      "FLSMFL"
+     ],
+     "WMOidentifier": [
+      "WGUS82 KMFL 302105"
+     ],
+     "NWSheadline": [
+      "FLOOD ADVISORY IN EFFECT UNTIL 7 PM EDT THIS EVENING"
+     ],
+     "BLOCKCHANNEL": [
+      "EAS",
+      "NWEM",
+      "CMAS"
+     ],
+     "VTEC": [
+      "/O.NEW.KMFL.FA.Y.0045.260630T2105Z-260630T2300Z/"
+     ],
+     "eventEndingTime": [
+      "2026-06-30T19:00:00-04:00"
+     ]
+    },
+    "scope": "Public",
+    "code": "IPAWSv1.0",
+    "language": "en-US",
+    "web": "http://www.weather.gov",
+    "eventCode": {
+     "SAME": [
+      "NWS"
+     ],
+     "NationalWeatherService": [
+      "FAY"
+     ]
+    }
+   }
+  },
+  {
+   "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.64fe158bd1ec2f6ddfeb49f7d21374bda83e5a33.001.1",
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -88.57,
+       31.43
+      ],
+      [
+       -88.46,
+       31.43
+      ],
+      [
+       -88.54,
+       31.08
+      ],
+      [
+       -88.73,
+       30.98
+      ],
+      [
+       -88.75,
+       31
+      ],
+      [
+       -88.58,
+       31.1
+      ],
+      [
+       -88.57,
+       31.43
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.64fe158bd1ec2f6ddfeb49f7d21374bda83e5a33.001.1",
+    "@type": "wx:Alert",
+    "id": "urn:oid:2.49.0.1.840.0.64fe158bd1ec2f6ddfeb49f7d21374bda83e5a33.001.1",
+    "areaDesc": "George, MS; Greene, MS",
+    "geocode": {
+     "SAME": [
+      "028039",
+      "028041"
+     ],
+     "UGC": [
+      "MSC039",
+      "MSC041"
+     ]
+    },
+    "affectedZones": [
+     "https://api.weather.gov/zones/county/MSC039",
+     "https://api.weather.gov/zones/county/MSC041"
+    ],
+    "references": [],
+    "sent": "2026-06-30T09:27:00-05:00",
+    "effective": "2026-06-30T09:27:00-05:00",
+    "onset": "2026-06-30T09:27:00-05:00",
+    "expires": "2026-06-30T21:30:00-05:00",
+    "ends": "2026-07-01T13:00:00-05:00",
+    "status": "Actual",
+    "messageType": "Alert",
+    "category": "Met",
+    "severity": "Severe",
+    "certainty": "Observed",
+    "urgency": "Immediate",
+    "event": "Flood Warning",
+    "sender": "w-nws.webmaster@noaa.gov",
+    "senderName": "NWS Mobile AL",
+    "headline": "Flood Warning issued June 30 at 9:27AM CDT until July 1 at 1:00PM CDT by NWS Mobile AL",
+    "description": "...The Flood Warning continues for the following river in\nMississippi...\n\nChickasawhay At Leakesville affecting Greene and George Counties.\n\nFor the Chickasawhay River...including Waynesboro, Leakesville...\nMinor flooding is forecast.\n\nAdditional information is available at www.weather.gov/mob. Click on\nthe Rivers and Lakes menu for forecasts and observations.\n\nThe next statement will be issued when updates occur.\n\n* WHAT...Minor flooding is occurring and minor flooding is forecast.\n\n* WHERE...Chickasawhay at Leakesville.\n\n* WHEN...Until Wednesday afternoon.\n\n* IMPACTS...At 20.0 feet, flooding of lowlands will occur. At 22.0\nfeet, flooding of lowlands continues and some roads in low lying\nareas become cut off by high water.\n\n* ADDITIONAL DETAILS...\n- At 9:15 AM CDT Tuesday the stage was 22.5 feet.\n- Recent Activity...The maximum river stage in the 24 hours ending\nat 9:15 AM CDT Tuesday was 25.5 feet.\n- Forecast...The river is expected to fall below flood stage\ntomorrow morning and continue falling to 13.8 feet Sunday\nmorning.\n- Flood stage is 20.0 feet.\n- http://www.weather.gov/safety/flood",
+    "instruction": null,
+    "response": "Avoid",
+    "note": null,
+    "parameters": {
+     "AWIPSidentifier": [
+      "FLSMOB"
+     ],
+     "WMOidentifier": [
+      "WGUS84 KMOB 301427"
+     ],
+     "NWSheadline": [
+      "FLOOD WARNING NOW IN EFFECT UNTIL WEDNESDAY AFTERNOON"
+     ],
+     "BLOCKCHANNEL": [
+      "EAS",
+      "NWEM",
+      "CMAS"
+     ],
+     "EAS-ORG": [
+      "WXR"
+     ],
+     "VTEC": [
+      "/O.EXT.KMOB.FL.W.0023.000000T0000Z-260701T1800Z/"
+     ],
+     "eventEndingTime": [
+      "2026-07-01T13:00:00-05:00"
+     ],
+     "expiredReferences": [
+      "w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.a2ee5ef62a064575fb493aa29999b48832422bdd.001.1,2026-06-29T20:12:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.ed0efbc1652259ea9d37642147fe11ed7822e061.001.1,2026-06-29T09:57:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.ae5b93f88ae6d03d360f9cf8e962e4b988f23191.001.1,2026-06-28T20:12:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.f43d708f3ec6061270e2d27324c06ed69fe1a65a.001.1,2026-06-28T09:18:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.e44b506d4f2b7b70c872c5e9f910523cbe79b6e2.001.1,2026-06-27T20:14:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.75c6cd05353d7b2a0bba2c2e3990acc4dc2c5a28.001.1,2026-06-27T11:21:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.3bfb64c6297c9bdd0e2e30cd6b074dafe3a01110.001.1,2026-06-26T19:43:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.b95d1a20acd72c10be41763c44d438327748aa7a.001.1,2026-06-26T09:22:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.4e0136e4fa459eb597c640f2a2409c1731ee18d0.001.1,2026-06-25T19:31:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.3c3eead59550e16e17e7c1260739560111ec2fa9.001.1,2026-06-25T10:44:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.6d29a604f995fe4d027ca4724f8d4fe55ca61abf.001.1,2026-06-24T19:48:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.0c40ba9201bf5ac1bd2ba1184f84d0d066c44150.001.1,2026-06-24T10:05:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.7a021f7847d38b851c276f2490fbbf3336a05b86.001.1,2026-06-23T20:23:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.1986d8555dcb42f9478a19116a7b1344aad5197d.001.1,2026-06-23T08:52:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.b37cf080d5a4412442d577a1aeef10d54382b740.001.1,2026-06-22T20:53:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.fd941570250115209ba4f3481e9633a910f63de4.001.1,2026-06-22T09:38:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.6e44d0b604d7aa04c7bb2788a7927a47166648a6.001.1,2026-06-21T21:31:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.07aa76959ddd05ebc1c42cb04c23155992f127c9.001.1,2026-06-21T10:04:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.fab30fe0b71eebbc09d7732d5d7ef19980b6a0bc.001.1,2026-06-20T21:50:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.c6e30d1bdb60cc58f71a569a0247da3bb12544a5.001.1,2026-06-20T10:28:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.393f6275f3ff958873075610b34af224e3556980.001.1,2026-06-20T07:54:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.8667b9d796d0711c12e07a4c23e8545a0da94de9.001.1,2026-06-19T20:39:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.572478aec7afec378a117c6706392badd76fee5a.001.1,2026-06-19T10:37:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.9015433bdbc10edd806ec7ee5abf3a009342380f.001.1,2026-06-18T20:49:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.edb55f002c8c7d8552850f47b557a9f1840794d6.001.1,2026-06-18T14:14:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.2d64aaf72a077afc76494188bbfc0f2b25761a6e.001.1,2026-06-18T09:53:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.d89ff5e5e900175f0c758b231dea482aa553b19e.001.1,2026-06-18T09:22:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.bc7cf4adec932c16a0fef55180e4bf0501c8dec5.001.1,2026-06-17T20:03:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.7000f6998cb3e432741c028eb3cb53da21eb97d1.001.1,2026-06-17T13:33:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.2e56385e34365fa4167ff1c929b1183f3a687907.001.1,2026-06-17T06:33:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.4c25bfb1d43f916c425014f243b81355a6815e86.001.1,2026-06-17T01:23:00-05:00 w-nws.webmaster@noaa.gov,urn:oid:2.49.0.1.840.0.b8b2d6199d0116c51df938614c9c117eddecb08d.001.1,2026-06-16T09:39:00-05:00"
+     ]
+    },
+    "scope": "Public",
+    "code": "IPAWSv1.0",
+    "language": "en-US",
+    "web": "http://www.weather.gov",
+    "eventCode": {
+     "SAME": [
+      "FLS"
+     ],
+     "NationalWeatherService": [
+      "FLW"
+     ]
+    }
+   }
+  }
+ ],
+ "title": "Current watches, warnings, and advisories",
+ "updated": "2026-06-30T22:42:17+00:00"
+}
