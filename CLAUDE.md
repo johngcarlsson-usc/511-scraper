@@ -130,9 +130,16 @@ Env vars (see `.env.example`): `FT_VALHALLA_URL/USER/PASS/NGROK`,
    speeds; bespoke adapters for 511IA/511NE; Caltrans PeMS bulk ingest.
 3. **Validate Mode B against the live Valhalla** — confirm the `traffic.tar`
    byte format vs the running build; tune breakpoint/congestion fields; add a
-   before/after route ETA check. **Blocked from this session: no FT_VALHALLA_URL
-   reachable / no shell on the Valhalla host.** Everything offline-testable
-   in `valhalla_traffic.py` continues to round-trip.
+   before/after route ETA check. **Partial: 2026-06-30 live probe against
+   `https://jgc-valhalla.ngrok.app` (Valhalla 3.4.0, tileset 2026-05-31,
+   coverage = US+Canada) confirmed Mode A end-to-end** -- `check`, `/route`,
+   `/trace_attributes`, and the GTFS-RT probe pipeline (MBTA
+   VehiclePositions -> map_match_probes -> aggregate_by_edge) all work.
+   See `scripts/live_gtfs_rt_smoke.py`. **Mode B traffic.tar byte-format
+   check still blocked**: only the routing endpoints are exposed over ngrok,
+   there's no shell on the tile host, so we can't run
+   `valhalla_build_extract --traffic` or write into traffic.tar and rerun
+   a route to confirm the ETA moves.
 4. **Fusion tuning** — calibrate `FusionConfig` multipliers against observed
    data; add per-edge confidence blending when multiple measured sources agree.
 5. **Camera CV + NPMRDS** — traffic-camera vehicle detection for density/speed;
